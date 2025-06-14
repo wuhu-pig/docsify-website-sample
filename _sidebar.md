@@ -1,16 +1,14 @@
-- Guide
-  - [Getting Started](/getting-started)
-  - [Key Bindings](/key-bindings)
-  - [FAQ](/faq)
-  - [Troubleshooting](/troubleshooting)
-- Advanced
-  - [Advanced Tips](/advanced-tips)
-  - [Advanced Configs](/advanced-configs)
-  - [Command Line Options](/command-line-options)
-- <a style="display:inline;border-right-style:none;" href="/pro">PRO</a> <sup style="color:red;">NEW!</sup>
-  - [Activation Guide](/activation-guide)
+- Getting Started
+  - [Introduction](/introduction)
+  - [Installation](/installation)
+  - [Configuration](/configuration)
+- Features
+  - [Basic Usage](/usage)
+  - [Advanced Features](/advanced)
+  - [API Reference](/api)
+- Contributing
+  - [How to Contribute](/contributing)
+  - [Code of Conduct](/code-of-conduct)
 - More
-  - [Official Site](https://snipaste.com)
-  - [Download](/download)
-  - [Translation](/translation)
   - [Changelog](/changelog)
+  - [Contact](/contact)

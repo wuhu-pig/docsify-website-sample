@@ -2,10 +2,9 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Snipaste</title>
-  <meta name="keywords" content="snipaste, snip, screenshot, paste, pin, clipboard, productivity, help, documentation, docs">
-  <meta name="description" content="Snip & Paste">
-  <meta name="google-site-verification" content="-R8Ja0TPv2uw1XiaB1IBthIel4AeCpYvgpeHg4V85Lk" />
+  <title>My Docsify Website</title>
+  <meta name="keywords" content="docsify, documentation, docs">
+  <meta name="description" content="My Documentation Website">
   <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
   <link rel="stylesheet" href="//unpkg.com/docsify/lib/themes/vue.css">
   <style type="text/css">
@@ -16,105 +15,37 @@
 <body>
   <nav data-cloak>
     <a href="/">En</a>
-    <a href="/zh-cn/">中文</a>
+    <a href="/zh-cn/">����</a>
   </nav>
   <div id="app"></div>
 </body>
 <script type="text/javascript">
   window.$docsify = {
-    repo: 'Snipaste/feedback',
-    name: 'Snipaste',
-    logo: 'logo.svg height="32px"',
+    repo: 'wuhu-pig/docsify-website-sample',
+    name: 'My Documentation',
+    logo: 'logo.svg',
     nameLink: {
-    '/zh-cn/': 'https://docs.snipaste.com/zh-cn/',
-    '/': '/'
+      '/zh-cn/': 'https://github.com/wuhu-pig/docsify-website-sample/zh-cn/',
+      '/': '/'
     },
     maxLevel: 3,
     subMaxLevel: 2,
     auto2top: true,
     loadSidebar: true,
     autoHeader: true,
-    routerMode: 'history', // default: 'hash'
+    routerMode: 'history',
     search: {
       maxAge: 43200000,
       placeholder: {
-        '/zh-cn/': '搜索',
+        '/zh-cn/': '����',
         '/': 'Search'
       },
       noData: {
-        '/zh-cn/': '找不到结果',
+        '/zh-cn/': 'û�н��',
         '/': 'No Results'
       }
     },
-    formatUpdated: '{YYYY}.{MM}.{DD} {HH}:{mm}',
-    ga: 'UA-89754315-2',
-    alias: {
-    '/pro': 'https://docs.snipaste.com/wiki/PRO.md',
-    '/activation-guide': 'https://docs.snipaste.com/wiki/Activation-Guide.md',
-    '/activation-guide-desktop': 'https://docs.snipaste.com/wiki/Activation-Guide-‐-Desktop.md',
-    '/activation-guide-ms-store': 'https://docs.snipaste.com/wiki/Activation-Guide-‐-Microsoft-Store.md',
-    '/mac-beta': 'https://docs.snipaste.com/wiki/Beta-for-Mac.md',
-    '/getting-started': 'https://docs.snipaste.com/wiki/Getting-Started.md',
-    '/key-bindings': 'https://docs.snipaste.com/wiki/Key-Bindings.md',
-    '/faq': 'https://docs.snipaste.com/wiki/FAQ.md',
-    '/troubleshooting': 'https://docs.snipaste.com/wiki/Troubleshooting.md',
-    '/advanced-tips': 'https://docs.snipaste.com/wiki/Advanced-Tips.md',
-    '/advanced-configs': 'https://docs.snipaste.com/wiki/Advanced-Configs.md',
-    '/command-line-options': 'https://docs.snipaste.com/wiki/Command-Line-Options.md',
-    '/download': 'https://docs.snipaste.com/wiki/Download.md',
-    '/changelog': 'https://docs.snipaste.com/wiki/Changelog.md',
-    '/translation': 'https://docs.snipaste.com/wiki/Translation.md',
-    '/zh-cn/pro': 'https://docs.snipaste.com/wiki/专业版.md',
-    '/zh-cn/activation-guide': 'https://docs.snipaste.com/wiki/激活指引.md',
-    '/zh-cn/activation-guide-desktop': 'https://docs.snipaste.com/wiki/激活指引-‐-桌面版.md',
-    '/zh-cn/activation-guide-ms-store': 'https://docs.snipaste.com/wiki/激活指引-‐-微软商店版.md',
-    '/zh-cn/mac-beta': 'https://docs.snipaste.com/wiki/Mac-公测版.md',
-    '/zh-cn/getting-started': 'https://docs.snipaste.com/wiki/基础操作.md',
-    '/zh-cn/key-bindings': 'https://docs.snipaste.com/wiki/内置快捷键.md',
-    '/zh-cn/faq': 'https://docs.snipaste.com/wiki/常见问题.md',
-    '/zh-cn/troubleshooting': 'https://docs.snipaste.com/wiki/故障排除.md',
-    '/zh-cn/advanced-tips': 'https://docs.snipaste.com/wiki/高级技巧.md',
-    '/zh-cn/advanced-configs': 'https://docs.snipaste.com/wiki/高级设置.md',
-    '/zh-cn/command-line-options': 'https://docs.snipaste.com/wiki/命令行选项.md',
-    '/zh-cn/download': 'https://docs.snipaste.com/wiki/下载.md',
-    '/zh-cn/changelog': 'https://docs.snipaste.com/wiki/更新日志.md',
-    '/zh-cn/translation': 'https://docs.snipaste.com/wiki/帮助翻译.md'
-    },
-    plugins: [
-      function (hook, vm) {
-        var w2d = {
-          '专业版': '/zh-cn/pro',
-          'Activation-Guide-‐-Desktop': '/activation-guide-desktop',
-          'Activation-Guide-‐-Microsoft-Store': '/activation-guide-ms-store',
-          '激活指引-‐-桌面版': '/zh-cn/activation-guide-desktop',
-          '激活指引-‐-微软商店版': '/zh-cn/activation-guide-ms-store',
-          '激活指引': '/zh-cn/activation-guide',
-          'Mac-公测版': '/zh-cn/mac-beta',
-          '基础操作': '/zh-cn/getting-started',
-          '内置快捷键': '/zh-cn/key-bindings',
-          '常见问题': '/zh-cn/faq',
-          '故障排除': '/zh-cn/troubleshooting',
-          '高级技巧': '/zh-cn/advanced-tips',
-          '高级设置': '/zh-cn/advanced-configs',
-          '命令行选项': '/zh-cn/command-line-options',
-          '下载': '/zh-cn/download',
-          '更新日志': '/zh-cn/changelog'
-        };
-        var wiki = "https://github.com/Snipaste/feedback/wiki/";
-
-        // replace wiki links to docs.snipaste.com
-        hook.beforeEach(function(content) {
-          if (content == null)
-            return null;
-          for (var w in w2d) {
-            content = content.replace(new RegExp("\\]\\(" + wiki + w, "g"), '](' + w2d[w]).replace(new RegExp("\\]\\(" + wiki + encodeURI(w), "g"), '](' + w2d[w]);
-          }
-          // general en pages
-          content = content.replace(new RegExp("\\]\\(" + wiki + "([a-zA-Z\\-]+)", "g"), function (a, m) { return '](/' + m.toLowerCase() });
-          return content;
-        })
-      }
-    ]
+    formatUpdated: '{YYYY}.{MM}.{DD} {HH}:{mm}'
   }
 
   // #abc -> ?id=abc
@@ -131,5 +62,4 @@
 </script>
 <script src="//unpkg.com/docsify@4.9.1/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
-<script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
 </html>
