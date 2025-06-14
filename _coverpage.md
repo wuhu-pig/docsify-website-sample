@@ -1,5 +1,6 @@
 <div class="cover-container">
   <div class="cover-content">
+    <img src="logo.svg" alt="电机控制" class="cover-logo">
     <h1>电机控制文档中心 <small>v1.0.0</small></h1>
     <p class="cover-description">
       专业的电机控制技术文档库，涵盖BLDC、FOC等控制算法<br>
@@ -30,6 +31,12 @@
 .cover-content {
   max-width: 800px;
   margin: 0 auto;
+}
+
+.cover-logo {
+  height: 120px;
+  margin-bottom: 30px;
+  display: block;
 }
 
 .cover-description {
