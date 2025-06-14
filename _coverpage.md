@@ -7,10 +7,6 @@
       以及ADC、TIM等硬件模块的应用指南
     </p>
     
-    <div class="cover-buttons">
-      <a href="/motorcontrol/基础知识.md" class="btn btn-primary">开始学习</a>
-      <a href="/motorcontrol/FOC电控.md" class="btn btn-secondary">FOC控制</a>
-    </div>
     
     <div class="cover-footer">
       STM32 | 电机驱动 | 控制算法 | 硬件设计
@@ -35,7 +31,7 @@
 
 .cover-logo {
   height: 120px;
-  margin-bottom: 30px;
+  margin: 0 auto 30px auto;
   display: block;
 }
 
