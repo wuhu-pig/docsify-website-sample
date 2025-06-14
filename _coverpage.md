@@ -3,14 +3,8 @@
     <img src="logo.svg" alt="电机控制" class="cover-logo">
     <h1>电机控制文档中心 <small>v1.0.0</small></h1>
     <p class="cover-description">
-      专业的电机控制技术文档库，涵盖BLDC、FOC等控制算法<br>
-      以及ADC、TIM等硬件模块的应用指南
+      记录我自己的学习历程
     </p>
-    
-    
-    <div class="cover-footer">
-      STM32 | 电机驱动 | 控制算法 | 硬件设计
-    </div>
   </div>
 </div>
 
