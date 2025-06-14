@@ -1,6 +1,6 @@
 <!-- 电机控制文档中心 -->
-<div style="text-align: center; margin-top: 80px">
-  <img src="logo.svg" alt="电机控制" style="height: 120px; margin-bottom: 30px;">
+<div style="text-align: center; padding-top: 80px; min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center;">
+  <img src="logo.svg" alt="电机控制" style="height: 120px; margin-bottom: 30px; display: block;">
   <h1>电机控制文档中心 <small>v1.0.0</small></h1>
   <p style="color: #666; max-width: 600px; margin: 20px auto; line-height: 1.6;">
     专业的电机控制技术文档库，涵盖BLDC、FOC等控制算法<br>

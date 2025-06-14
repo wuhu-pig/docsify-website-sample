@@ -1,24 +1,24 @@
-# My Documentation
+# 电机控制文档中心
 
-> Welcome to my documentation website built with Docsify!
+> 专业的电机控制技术文档库
 
-## Getting Started
+## 主要内容
 
-- [Introduction](/introduction)
-- [Installation](/installation)
-- [Configuration](/configuration)
+- [基础知识](/motorcontrol/基础知识.md)
+- [控制框架](/motorcontrol/控制框架.md)
+- [FOC电控](/motorcontrol/FOC电控.md)
+- [BLDC电控](/motorcontrol/BLDC电控.md)
 
-## Features
+## 硬件模块
 
-- [Basic Usage](/usage)
-- [Advanced Features](/advanced)
-- [API Reference](/api)
+- [ADC模块](/motorcontrol/ADC.md)
+- [TIM模块](/motorcontrol/TIM.md)
 
-## Contributing
+## 参与贡献
 
-Feel free to contribute to this documentation by submitting pull requests or opening issues.
+欢迎提交Pull Request或Issue来改进文档
 
-## Contact
+## 联系方式
 
 - GitHub: [wuhu-pig](https://github.com/wuhu-pig)
-- Email: [your-email@example.com](mailto:your-email@example.com)
+- 邮箱: contact@example.com
