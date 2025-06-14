@@ -15,37 +15,43 @@
 <body>
   <nav data-cloak>
     <a href="/">En</a>
-    <a href="/zh-cn/">����</a>
+    <a href="/zh-cn/">中文</a>
   </nav>
   <div id="app"></div>
 </body>
 <script type="text/javascript">
   window.$docsify = {
     repo: 'wuhu-pig/docsify-website-sample',
-    name: 'My Documentation',
+    name: '电机控制文档中心',
+    nameLink: '/',
     logo: 'logo.svg',
-    nameLink: {
-      '/zh-cn/': 'https://github.com/wuhu-pig/docsify-website-sample/zh-cn/',
-      '/': '/'
-    },
-    maxLevel: 3,
-    subMaxLevel: 2,
-    auto2top: true,
+    coverpage: true,
     loadSidebar: true,
+    mergeNavbar: true,
+    maxLevel: 4,
+    subMaxLevel: 3,
+    auto2top: true,
     autoHeader: true,
     routerMode: 'history',
     search: {
-      maxAge: 43200000,
+      maxAge: 86400000,
+      paths: 'auto',
       placeholder: {
-        '/zh-cn/': '����',
+        '/zh-cn/': '搜索文档',
         '/': 'Search'
       },
       noData: {
-        '/zh-cn/': 'û�н��',
-        '/': 'No Results'
+        '/zh-cn/': '没有找到结果',
+        '/': 'No Results Found'
       }
     },
-    formatUpdated: '{YYYY}.{MM}.{DD} {HH}:{mm}'
+    plugins: [
+      function(hook, vm) {
+        hook.beforeEach(function(content) {
+          return content + '\n\n---\n\n最后更新: {docsify-updated}';
+        });
+      }
+    ]
   }
 
   // #abc -> ?id=abc

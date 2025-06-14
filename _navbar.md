@@ -1,2 +1,4 @@
-- <a href="https://snipaste.com">Website</a>
-- <a href="/#/zh-cn/">简体中文</a>
+- <a href="/">首页</a>
+- <a href="/motorcontrol/">电机控制</a>
+- <a href="https://github.com/wuhu-pig/docsify-website-sample" target="_blank">GitHub</a>
+- <a href="mailto:contact@example.com">联系我们</a>

@@ -1,16 +1,11 @@
-- 指南
-  - [基础操作](/zh-cn/getting-started)
-  - [内置快捷键](/zh-cn/key-bindings)
-  - [常见问题](/zh-cn/faq)
-  - [故障排除](/zh-cn/troubleshooting)
-- 进阶
-  - [高级技巧](/zh-cn/advanced-tips)
-  - [高级设置](/zh-cn/advanced-configs)
-  - [命令行选项](/zh-cn/command-line-options)
-- <a style="display:inline;border-right-style:none;" href="/zh-cn/pro">专业版</a> <sup style="color:red;">新!</sup>
-  - [激活指引](/zh-cn/activation-guide)
-- 更多
-  - [官网](https://zh.snipaste.com)
-  - [下载](/zh-cn/download)
-  - [帮助翻译](/zh-cn/translation)
-  - [更新日志](/zh-cn/changelog)
+- 学习资料
+  - 整体框架
+    - [控制框架](/motorcontrol/控制框架.md)
+  - 基础知识
+    - [ADC模块](/motorcontrol/ADC.md)
+    - [TIM模块](/motorcontrol/TIM.md)
+    - [基础知识](/motorcontrol/基础知识.md)
+    - [常用数学公式](/motorcontrol/常用的数学公式.md)
+  - 算法实现
+    - [BLDC电控](/motorcontrol/BLDC电控.md)
+    - [FOC电控](/motorcontrol/FOC电控.md)

@@ -1,14 +1,11 @@
-- Getting Started
-  - [Introduction](/introduction)
-  - [Installation](/installation)
-  - [Configuration](/configuration)
-- Features
-  - [Basic Usage](/usage)
-  - [Advanced Features](/advanced)
-  - [API Reference](/api)
-- Contributing
-  - [How to Contribute](/contributing)
-  - [Code of Conduct](/code-of-conduct)
-- More
-  - [Changelog](/changelog)
-  - [Contact](/contact)
+- Study
+  - 整体框架
+    - [控制框架](/motorcontrol/控制框架.md)
+  - 基础知识
+    - [ADC](/motorcontrol/ADC.md)
+    - [TIM](/motorcontrol/TIM.md)
+    - [基础知识](/motorcontrol/基础知识.md)
+    - [常用的数学公式](/motorcontrol/常用的数学公式.md)
+  - 算法实现
+    - [BLDC电控](/motorcontrol/BLDC电控.md)
+    - [FOC电控](/motorcontrol/FOC电控.md)

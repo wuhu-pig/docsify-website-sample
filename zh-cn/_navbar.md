@@ -1,2 +1,0 @@
-- <a href="https://zh.snipaste.com">官网</a>
-- <a href="/">English</a>
