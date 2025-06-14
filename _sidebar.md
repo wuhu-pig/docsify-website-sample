@@ -1,6 +1,16 @@
-- 开始
-
-  - [概述](/README.md)
-
-- 功能演示
-  - [如何实现菜单嵌套](/usage/如何实现菜单嵌套.md)
+- Guide
+  - [Getting Started](/getting-started)
+  - [Key Bindings](/key-bindings)
+  - [FAQ](/faq)
+  - [Troubleshooting](/troubleshooting)
+- Advanced
+  - [Advanced Tips](/advanced-tips)
+  - [Advanced Configs](/advanced-configs)
+  - [Command Line Options](/command-line-options)
+- <a style="display:inline;border-right-style:none;" href="/pro">PRO</a> <sup style="color:red;">NEW!</sup>
+  - [Activation Guide](/activation-guide)
+- More
+  - [Official Site](https://snipaste.com)
+  - [Download](/download)
+  - [Translation](/translation)
+  - [Changelog](/changelog)

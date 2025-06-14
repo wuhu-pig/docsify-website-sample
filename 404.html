@@ -50,9 +50,6 @@
     ga: 'UA-89754315-2',
     alias: {
     '/pro': 'https://docs.snipaste.com/wiki/PRO.md',
-    '/activation-guide': 'https://docs.snipaste.com/wiki/Activation-Guide.md',
-    '/activation-guide-desktop': 'https://docs.snipaste.com/wiki/Activation-Guide-‐-Desktop.md',
-    '/activation-guide-ms-store': 'https://docs.snipaste.com/wiki/Activation-Guide-‐-Microsoft-Store.md',
     '/mac-beta': 'https://docs.snipaste.com/wiki/Beta-for-Mac.md',
     '/getting-started': 'https://docs.snipaste.com/wiki/Getting-Started.md',
     '/key-bindings': 'https://docs.snipaste.com/wiki/Key-Bindings.md',
@@ -65,9 +62,6 @@
     '/changelog': 'https://docs.snipaste.com/wiki/Changelog.md',
     '/translation': 'https://docs.snipaste.com/wiki/Translation.md',
     '/zh-cn/pro': 'https://docs.snipaste.com/wiki/专业版.md',
-    '/zh-cn/activation-guide': 'https://docs.snipaste.com/wiki/激活指引.md',
-    '/zh-cn/activation-guide-desktop': 'https://docs.snipaste.com/wiki/激活指引-‐-桌面版.md',
-    '/zh-cn/activation-guide-ms-store': 'https://docs.snipaste.com/wiki/激活指引-‐-微软商店版.md',
     '/zh-cn/mac-beta': 'https://docs.snipaste.com/wiki/Mac-公测版.md',
     '/zh-cn/getting-started': 'https://docs.snipaste.com/wiki/基础操作.md',
     '/zh-cn/key-bindings': 'https://docs.snipaste.com/wiki/内置快捷键.md',
@@ -84,12 +78,7 @@
       function (hook, vm) {
         var w2d = {
           '专业版': '/zh-cn/pro',
-          'Activation-Guide-‐-Desktop': '/activation-guide-desktop',
-          'Activation-Guide-‐-Microsoft-Store': '/activation-guide-ms-store',
-          '激活指引-‐-桌面版': '/zh-cn/activation-guide-desktop',
-          '激活指引-‐-微软商店版': '/zh-cn/activation-guide-ms-store',
-          '激活指引': '/zh-cn/activation-guide',
-          'Mac-公测版': '/zh-cn/mac-beta',
+          'Mac 公测版': '/zh-cn/mac-beta',
           '基础操作': '/zh-cn/getting-started',
           '内置快捷键': '/zh-cn/key-bindings',
           '常见问题': '/zh-cn/faq',
@@ -105,17 +94,22 @@
         // replace wiki links to docs.snipaste.com
         hook.beforeEach(function(content) {
           if (content == null)
-            return null;
+            return null
+          // en pages
+          content = content.replace(new RegExp("\\]\\(" + wiki + "([a-zA-Z\\-]+)", "g"), function (a, m) { return '](/' + m.toLowerCase() })
+          // zh pages
           for (var w in w2d) {
-            content = content.replace(new RegExp("\\]\\(" + wiki + w, "g"), '](' + w2d[w]).replace(new RegExp("\\]\\(" + wiki + encodeURI(w), "g"), '](' + w2d[w]);
+            content = content.replace(new RegExp("\\]\\(" + wiki + w, "g"), '](' + w2d[w]).replace(new RegExp("\\]\\(" + wiki + encodeURI(w), "g"), '](' + w2d[w])
           }
-          // general en pages
-          content = content.replace(new RegExp("\\]\\(" + wiki + "([a-zA-Z\\-]+)", "g"), function (a, m) { return '](/' + m.toLowerCase() });
-          return content;
+          return content
         })
       }
     ]
   }
+
+  // if (typeof navigator.serviceWorker !== 'undefined') {
+  //   navigator.serviceWorker.register('sw.js')
+  // }
 
   // #abc -> ?id=abc
   // %23abc -> ?id=abc
@@ -129,7 +123,7 @@
   }
 
 </script>
-<script src="//unpkg.com/docsify@4.9.1/lib/docsify.min.js"></script>
+<script src="//unpkg.com/docsify/lib/docsify.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/search.min.js"></script>
 <script src="//unpkg.com/docsify/lib/plugins/ga.min.js"></script>
 </html>
