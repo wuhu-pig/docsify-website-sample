@@ -136,4 +136,6 @@ typedef struct{
 extern Motor_t my_motor;
 extern void foc_init(void);
 extern void foc_main(void);
+extern void inverse_clarke_transform_with_3rd_harmonic(float alpha, float beta, float *a, float *b, float *c);
+
 #endif

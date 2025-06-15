@@ -1,11 +1,14 @@
 - Study
-  - 整体框架
-    - [控制框架](/motorcontrol/控制框架.md)
-  - 基础知识
-    - [ADC](/motorcontrol/ADC.md)
-    - [TIM](/motorcontrol/TIM.md)
-    - [基础知识](/motorcontrol/基础知识.md)
-    - [常用的数学公式](/motorcontrol/常用的数学公式.md)
-  - 算法实现
-    - [BLDC电控](/motorcontrol/BLDC电控.md)
-    - [FOC电控](/motorcontrol/FOC电控.md)
+  - [0.必备基础知识](/motorcontrol/0.必备基础知识/)
+    - [基础知识](/motorcontrol/0.必备基础知识/基础知识.md)
+    - [常用的数学公式](/motorcontrol/0.必备基础知识/常用的数学公式.md)
+    - [电控必学专业课](/motorcontrol/0.必备基础知识/电控必学专业课.md)
+  - [1.寄存器底层](/motorcontrol/1.寄存器底层/)
+    - [控制框架](/motorcontrol/1.寄存器底层/控制框架.md)
+    - [ADC](/motorcontrol/1.寄存器底层/ADC.md)
+    - [TIM](/motorcontrol/1.寄存器底层/TIM.md)
+  - [2.控制算法](/motorcontrol/2.控制算法/)
+    - [BLDC电控](/motorcontrol/2.控制算法/BLDC电控.md)
+    - [FOC电控](/motorcontrol/2.控制算法/FOC电控.md)
+  - [3.好玩的项目](/motorcontrol/3.好玩的项目/)
+    - [轮趣科技引脚分配](/motorcontrol/3.好玩的项目/轮趣科技引脚分配.md)
