@@ -14,7 +14,7 @@
 #define Ts 						0.001			//1ms
 #define Vref 					12				//电源电压12v
 #define Vrefby2 			6					//电源电压12v
-
+#define PWM_PERIOD 		1000 			// PWM定时器周期值
 #define _constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
 // 电流采样结构体
@@ -135,7 +135,8 @@ typedef struct{
 
 extern Motor_t my_motor;
 extern void foc_init(void);
-extern void foc_main(void);
+extern void foc_main_spwm(void);
+extern void foc_main_svpwm(void);
 extern void inverse_clarke_transform_with_3rd_harmonic(float alpha, float beta, float *a, float *b, float *c);
 
 #endif

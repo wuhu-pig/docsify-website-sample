@@ -150,7 +150,7 @@ void TIM8_UP_TIM13_IRQHandler(void)
         // 清除中断标志
         ATIM_TIMX_CPLM->SR &= ~TIM_SR_UIF;
 				LED0_TOGGLE();
-				foc_main();
+				foc_main_svpwm();
        // adc_dma_enable(ADC_DMA_BUF_SIZE);
         // 这里添加您的处理代码
         // 例如：HAL_GPIO_TogglePin(GPIOx, GPIO_PIN_x); // 测试用
