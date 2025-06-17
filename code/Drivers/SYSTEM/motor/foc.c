@@ -6,32 +6,32 @@ Motor_t my_motor;
 
 void foc_init(void)
 {
-	//²ÎÊı³õÊ¼»¯
+	//å‚æ•°åˆå§‹åŒ–
 	my_motor.params.Poles=7;
 	my_motor.params.KV=220;
-	my_motor.params.Maxcurrent=20;//×î´óµçÁ÷
-	my_motor.params.Maxvoltage=5.1;//×î´óµçÑ¹
-	my_motor.params.Phaseresitance=2.3;//Ïàµç×è
-	my_motor.params.Wireresistance=5.1;//Ïßµç×è
-	my_motor.params.WireLs=2.8;//Ïßµç¸Ğ
-	my_motor.params.PhaseLs=0.86;//Ïàµç¸Ğ	
-	my_motor.params.Kslf=0.01;//»¬Ä£ÔöÒæ	
-	my_motor.params.Freq=10000;//PWMÆµÂÊ
-	my_motor.params.LPF_cutoff=1000;//µÍÍ¨ÂË²¨Æ÷½ØÖ¹ÆµÂÊ
-	my_motor.params.sat_boundary=10;//±¥ºÍº¯Êı±ß½çÖµ
-	my_motor.params.Ls=my_motor.params.PhaseLs;//¶¨×Óµç¸Ğ
-	my_motor.params.Rs=my_motor.params.Phaseresitance;//¶¨×Óµç×è
+	my_motor.params.Maxcurrent=20;//æœ€å¤§ç”µæµ
+	my_motor.params.Maxvoltage=5.1;//æœ€å¤§ç”µå‹
+	my_motor.params.Phaseresitance=2.3;//ç›¸ç”µé˜»
+	my_motor.params.Wireresistance=5.1;//çº¿ç”µé˜»
+	my_motor.params.WireLs=2.8;//çº¿ç”µæ„Ÿ
+	my_motor.params.PhaseLs=0.86;//ç›¸ç”µæ„Ÿ	
+	my_motor.params.Kslf=0.01;//æ»‘æ¨¡å¢ç›Š	
+	my_motor.params.Freq=10000;//PWMé¢‘ç‡
+	my_motor.params.LPF_cutoff=1000;//ä½é€šæ»¤æ³¢å™¨æˆªæ­¢é¢‘ç‡
+	my_motor.params.sat_boundary=10;//é¥±å’Œå‡½æ•°è¾¹ç•Œå€¼
+	my_motor.params.Ls=my_motor.params.PhaseLs;//å®šå­ç”µæ„Ÿ
+	my_motor.params.Rs=my_motor.params.Phaseresitance;//å®šå­ç”µé˜»
 
-	//PID²ÎÊı³õÊ¼»¯	
-	my_motor.pid.kp=0.1;//±ÈÀıÏµÊı
-	my_motor.pid.ki=0.01;//»ı·ÖÏµÊı	
-	my_motor.pid.integral=0;//»ı·ÖÖµ
-	my_motor.pid.output_limit=100;//Êä³öÏŞ·ù	
+	//PIDå‚æ•°åˆå§‹åŒ–	
+	my_motor.pid.kp=0.1;//æ¯”ä¾‹ç³»æ•°
+	my_motor.pid.ki=0.01;//ç§¯åˆ†ç³»æ•°	
+	my_motor.pid.integral=0;//ç§¯åˆ†å€¼
+	my_motor.pid.output_limit=100;//è¾“å‡ºé™å¹…	
 	
 	my_motor.control.maxspeed=MAXSPEED;
 	my_motor.control.targetspeed=1;
 	my_motor.control.voltage0.vq=Vref/2;
-	//µç»ú×´Ì¬³õÊ¼»¯
+	//ç”µæœºçŠ¶æ€åˆå§‹åŒ–
 	my_motor.state=MOTOR_STOPPED;
 }
 void speed_rampup(void)
@@ -45,7 +45,7 @@ void speed_rampup(void)
 	}
 }
 	
-// ParkÄæ±ä»»£ºÁ½ÏàĞı×ª£¨dq£©¡úÁ½Ïà¾²Ö¹£¨¦Á¦Â£©[thetaµ¥Î»Îª»¡¶È]
+// Parké€†å˜æ¢ï¼šä¸¤ç›¸æ—‹è½¬ï¼ˆdqï¼‰â†’ä¸¤ç›¸é™æ­¢ï¼ˆÎ±Î²ï¼‰[thetaå•ä½ä¸ºå¼§åº¦]
 void inverse_park_transform(float d, float q, float theta, float *alpha, float *beta) 
 {
     float cos_theta = cos(theta);
@@ -54,7 +54,7 @@ void inverse_park_transform(float d, float q, float theta, float *alpha, float *
     *beta  = d * sin_theta + q * cos_theta;
 }
 
-// ClarkeÄæ±ä»»£ºÁ½Ïà¾²Ö¹£¨¦Á¦Â£©¡úÈıÏà¾²Ö¹£¨abc£©£¨¼ÙÉèÁãĞò·ÖÁ¿Îª0£©
+// Clarkeé€†å˜æ¢ï¼šä¸¤ç›¸é™æ­¢ï¼ˆÎ±Î²ï¼‰â†’ä¸‰ç›¸é™æ­¢ï¼ˆabcï¼‰ï¼ˆå‡è®¾é›¶åºåˆ†é‡ä¸º0ï¼‰
 void inverse_clarke_transform(float alpha, float beta, float *a, float *b, float *c) 
 {
     *a = alpha+Vrefby2;
@@ -62,41 +62,41 @@ void inverse_clarke_transform(float alpha, float beta, float *a, float *b, float
     *c = -0.5 * alpha - SQRT3_BY_2 * beta+Vrefby2;
 }
 
-// ClarkeÄæ±ä»»£ºÁ½Ïà¾²Ö¹£¨¦Á¦Â£©¡úÈıÏà¾²Ö¹£¨abc£©£¨¼ÓÈëÈı´ÎĞ³²¨×¢Èë£©
+// Clarkeé€†å˜æ¢ï¼šä¸¤ç›¸é™æ­¢ï¼ˆÎ±Î²ï¼‰â†’ä¸‰ç›¸é™æ­¢ï¼ˆabcï¼‰ï¼ˆåŠ å…¥ä¸‰æ¬¡è°æ³¢æ³¨å…¥ï¼‰
 void inverse_clarke_transform_with_3rd_harmonic(float alpha, float beta, float *a, float *b, float *c) 
 {
-    // ¼ÆËã»ù²¨·ÖÁ¿
+    // è®¡ç®—åŸºæ³¢åˆ†é‡
     float base_a = alpha;
     float base_b = -0.5 * alpha + SQRT3_BY_2 * beta;
     float base_c = -0.5 * alpha - SQRT3_BY_2 * beta;
     
-    // ¼ÆËãÈı´ÎĞ³²¨·ÖÁ¿£¨×÷ÎªÁãĞò·ÖÁ¿£©
+    // è®¡ç®—ä¸‰æ¬¡è°æ³¢åˆ†é‡ï¼ˆä½œä¸ºé›¶åºåˆ†é‡ï¼‰
     float third_harmonic = (1.0f/6.0f) * sin(3.0f * my_motor.control.angle_el);
     
-    // µş¼ÓÈı´ÎĞ³²¨ºÍPWMÆ«ÒÆ
+    // å åŠ ä¸‰æ¬¡è°æ³¢å’ŒPWMåç§»
     *a = base_a + third_harmonic + Vrefby2;
     *b = base_b + third_harmonic + Vrefby2;
     *c = base_c + third_harmonic + Vrefby2;
 }
 
-// ClarkeÄæ±ä»»£ºÁ½Ïà¾²Ö¹£¨¦Á¦Â£©¡úÈıÏà¾²Ö¹£¨abc£©£¨¼ÓÈëÈı´ÎĞ³²¨×¢Èë£©
+// Clarkeé€†å˜æ¢ï¼šä¸¤ç›¸é™æ­¢ï¼ˆÎ±Î²ï¼‰â†’ä¸‰ç›¸é™æ­¢ï¼ˆabcï¼‰ï¼ˆåŠ å…¥ä¸‰æ¬¡è°æ³¢æ³¨å…¥ï¼‰
 void inverse_clarke_transform_with_3rd_harmonic_ai(float alpha, float beta, float *a, float *b, float *c) 
 {
-    // ¼ÆËã»ù²¨·ÖÁ¿
+    // è®¡ç®—åŸºæ³¢åˆ†é‡
     float base_a = alpha;
     float base_b = -0.5 * alpha + SQRT3_BY_2 * beta;
     float base_c = -0.5 * alpha - SQRT3_BY_2 * beta;
 
-    // ¼ÆËãÈı´ÎĞ³²¨·ÖÁ¿£¨¶¯Ì¬µ÷Õû·ùÖµ£©
-    float harmonic_amplitude = 0.38 * sqrt(pow(base_a, 2) + pow(base_b, 2) + pow(base_c, 2));  //»ùÓÚ»ù²¨·ùÖµ¼ÆËãĞ³²¨·ùÖµ
-    float third_harmonic = harmonic_amplitude * sin(3.0f * my_motor.control.angle_el + PI);  //ÏàÎ»Æ«ÒÆ180¶È
+    // è®¡ç®—ä¸‰æ¬¡è°æ³¢åˆ†é‡ï¼ˆåŠ¨æ€è°ƒæ•´å¹…å€¼ï¼‰
+    float harmonic_amplitude = 0.38 * sqrt(pow(base_a, 2) + pow(base_b, 2) + pow(base_c, 2));  //åŸºäºåŸºæ³¢å¹…å€¼è®¡ç®—è°æ³¢å¹…å€¼
+    float third_harmonic = harmonic_amplitude * sin(3.0f * my_motor.control.angle_el + PI);  //ç›¸ä½åç§»180åº¦
 
-    // µş¼ÓÈı´ÎĞ³²¨ºÍPWMÆ«ÒÆ
+    // å åŠ ä¸‰æ¬¡è°æ³¢å’ŒPWMåç§»
     *a = base_a + third_harmonic + Vrefby2;
     *b = base_b + third_harmonic + Vrefby2;
     *c = base_c + third_harmonic + Vrefby2;
 
-    // µçÑ¹ÏŞ·ù
+    // ç”µå‹é™å¹…
     *a = _constrain(*a, 0.0f, Vref);
     *b = _constrain(*b, 0.0f, Vref);
     *c = _constrain(*c, 0.0f, Vref);
@@ -104,7 +104,7 @@ void inverse_clarke_transform_with_3rd_harmonic_ai(float alpha, float beta, floa
 
 float _normalizeAngle(float angle)
 {
-    float a = fmod(angle, 2*PI);   //È¡Óà£¬½«½Ç¶ÈÏŞÖÆÔÚÒ»¸öÖÜÆÚÄÚ£¬³¬³ö²¿·ÖÉáÈ¥
+    float a = fmod(angle, 2*PI);   //å–ä½™ï¼Œå°†è§’åº¦é™åˆ¶åœ¨ä¸€ä¸ªå‘¨æœŸå†…ï¼Œè¶…å‡ºéƒ¨åˆ†èˆå»
     return a >= 0 ? a : (a + 2*PI);  
 }
 
@@ -120,29 +120,29 @@ void phasesetpwm(float *a, float *b, float *c,uint16_t *ccra,uint16_t *ccrb,uint
 
 void foc_main_spwm(void)
 {
-	speed_rampup();//ËÙ¶Èrampup
-	my_motor.control.speed_el=my_motor.control.speed*my_motor.params.Poles;//µÃµ½µçÆø½ÇËÙ¶È
-	my_motor.control.angle_el=_normalizeAngle(my_motor.control.speed_el*Ts+my_motor.control.angle_el);//µÃµ½»¡¶È
+	speed_rampup();//é€Ÿåº¦rampup
+	my_motor.control.speed_el=my_motor.control.speed*my_motor.params.Poles;//å¾—åˆ°ç”µæ°”è§’é€Ÿåº¦
+	my_motor.control.angle_el=_normalizeAngle(my_motor.control.speed_el*Ts+my_motor.control.angle_el);//å¾—åˆ°å¼§åº¦
 	inverse_park_transform(0,my_motor.control.voltage0.vq,my_motor.control.angle_el,(float *)&my_motor.control.voltage1.valpha,(float *)&my_motor.control.voltage1.vbeta);
 	inverse_clarke_transform_with_3rd_harmonic_ai(my_motor.control.voltage1.valpha,my_motor.control.voltage1.vbeta,(float *)&my_motor.control.voltage2.va,(float *)&my_motor.control.voltage2.vb,(float *)&my_motor.control.voltage2.vc);
 	phasesetpwm((float *)&my_motor.control.voltage2.va,(float *)&my_motor.control.voltage2.vb,(float *)&my_motor.control.voltage2.vc,(uint16_t  *)&my_motor.control.CCR.ccra,(uint16_t  *)&my_motor.control.CCR.ccrb,(uint16_t  *)&my_motor.control.CCR.ccrc);
 }
 
 
-// Æß¶Î·¨SVPWM¼ÆËã
+// ä¸ƒæ®µæ³•SVPWMè®¡ç®—
 void SVPWM_7Segment_DP(float U_alpha, float U_beta,uint16_t *ccra,uint16_t *ccrb,uint16_t *ccrc) 
 {
     float T1, T2, T0;
     uint8_t sector = 0;
     
-    // 1. ÉÈÇøÅĞ¶Ï
+    // 1. æ‰‡åŒºåˆ¤æ–­
     float U_ref = sqrtf(U_alpha*U_alpha + U_beta*U_beta);
     float theta = atan2f(U_beta, U_alpha);
     
-    if (theta < 0) theta += 2 * PI;  // ×ª»»µ½0-2¦Ğ·¶Î§
-    sector = (uint8_t)(theta / (PI/3));  // Ã¿60¶ÈÒ»¸öÉÈÇø
+    if (theta < 0) theta += 2 * PI;  // è½¬æ¢åˆ°0-2Ï€èŒƒå›´
+    sector = (uint8_t)(theta / (PI/3));  // æ¯60åº¦ä¸€ä¸ªæ‰‡åŒº
     
-    // 2. ¼ÆËãÊ¸Á¿×÷ÓÃÊ±¼ä (±ê×¼¹«Ê½)
+    // 2. è®¡ç®—çŸ¢é‡ä½œç”¨æ—¶é—´ (æ ‡å‡†å…¬å¼)
     float cos_theta = cosf(theta);
     float sin_theta = sinf(theta);
     float k = SQRT3 * PWM_PERIOD / Vref;
@@ -151,14 +151,14 @@ void SVPWM_7Segment_DP(float U_alpha, float U_beta,uint16_t *ccra,uint16_t *ccrb
     T2 = k * (SQRT3/2 * U_alpha + 0.5f * U_beta);
     T0 = PWM_PERIOD - T1 - T2;
     
-    // Ê±¼ä¹ıµ÷ÖÆ´¦Àí
+    // æ—¶é—´è¿‡è°ƒåˆ¶å¤„ç†
     if (T0 < 0) {
         T1 = T1 * PWM_PERIOD / (T1 + T2);
         T2 = T2 * PWM_PERIOD / (T1 + T2);
         T0 = 0;
     }
     
-    // 3. ¼ÆËãPWM±È½ÏÖµ (Æß¶Î·¨¶Ô³Æ·ÖÅä)
+    // 3. è®¡ç®—PWMæ¯”è¾ƒå€¼ (ä¸ƒæ®µæ³•å¯¹ç§°åˆ†é…)
     float Ta, Tb, Tc;
     float T_half0 = T0 / 2;
     
@@ -197,8 +197,8 @@ void SVPWM_7Segment_DP(float U_alpha, float U_beta,uint16_t *ccra,uint16_t *ccrb
             Ta = Tb = Tc = PWM_PERIOD / 2;
     }
     
-    // 4. ×ª»»ÎªÕûÊıPWM±È½ÏÖµ
-    *ccra = (uint16_t)(PWM_PERIOD - Ta); // ×¢Òâ¼«ĞÔ
+    // 4. è½¬æ¢ä¸ºæ•´æ•°PWMæ¯”è¾ƒå€¼
+    *ccra = (uint16_t)(PWM_PERIOD - Ta); // æ³¨æ„ææ€§
     *ccrb = (uint16_t)(PWM_PERIOD - Tb);
     *ccrc = (uint16_t)(PWM_PERIOD - Tc);
 		atim_timx_cplm_pwm_set(*ccra*1000,1);
@@ -213,26 +213,26 @@ void SVPWM_7Segment_CP(float U_alpha, float U_beta, uint16_t *ccra, uint16_t *cc
     uint8_t sector = 0;
     float Ta, Tb, Tc;
 
-    // 1. µçÑ¹Ê¸Á¿½Ç¶ÈÓëÄ£Öµ
+    // 1. ç”µå‹çŸ¢é‡è§’åº¦ä¸æ¨¡å€¼
     float theta = atan2f(U_beta, U_alpha);
-    if (theta < 0) theta += 2.0f * PI;  // ×ªµ½ [0, 2¦Ğ)
+    if (theta < 0) theta += 2.0f * PI;  // è½¬åˆ° [0, 2Ï€)
 
     float Uref = sqrtf(U_alpha * U_alpha + U_beta * U_beta);
 
-    // 2. ÉÈÇøÅĞ¶Ï£¨Ã¿ 60¡ã Ò»¸öÉÈÇø£©
+    // 2. æ‰‡åŒºåˆ¤æ–­ï¼ˆæ¯ 60Â° ä¸€ä¸ªæ‰‡åŒºï¼‰
     sector = (uint8_t)(theta / (PI / 3.0f));
 
-    // 3. ¼ÆËã T1/T2/T0£¨±ê×¼¹«Ê½£¬Í¶Ó°µ½ÏàÁÚ¿Õ¼äÊ¸Á¿ÉÏ£©
-    float angle_in_sector = theta - sector * (PI / 3.0f);  // Ïà¶ÔÓÚÉÈÇøÆğÊ¼µÄ½Ç¶È
+    // 3. è®¡ç®— T1/T2/T0ï¼ˆæ ‡å‡†å…¬å¼ï¼ŒæŠ•å½±åˆ°ç›¸é‚»ç©ºé—´çŸ¢é‡ä¸Šï¼‰
+    float angle_in_sector = theta - sector * (PI / 3.0f);  // ç›¸å¯¹äºæ‰‡åŒºèµ·å§‹çš„è§’åº¦
 
-    float T_s = (float)PWM_PERIOD; // PWMÖÜÆÚ
-    float Vdc = Vref;              // Ä¸ÏßµçÑ¹£ºVrefĞèÊÂÏÈ¸³ÖµÎªÊµ¼ÊVdcÖµ
+    float T_s = (float)PWM_PERIOD; // PWMå‘¨æœŸ
+    float Vdc = Vref;              // æ¯çº¿ç”µå‹ï¼šVreféœ€äº‹å…ˆèµ‹å€¼ä¸ºå®é™…Vdcå€¼
 
     T1 = T_s * Uref / Vdc * sinf(PI / 3.0f - angle_in_sector);
     T2 = T_s * Uref / Vdc * sinf(angle_in_sector);
     T0 = T_s - T1 - T2;
 
-    // 4. ¶Ô³ÆÆß¶Î·ÖÅä£¬¼ÆËã Ta/Tb/Tc
+    // 4. å¯¹ç§°ä¸ƒæ®µåˆ†é…ï¼Œè®¡ç®— Ta/Tb/Tc
     float T_half0 = T0 / 2.0f;
 
     switch (sector) {
@@ -271,24 +271,24 @@ void SVPWM_7Segment_CP(float U_alpha, float U_beta, uint16_t *ccra, uint16_t *cc
             break;
     }
 
-    // 5. ×ª»»ÎªPWM±È½ÏÖµ£¨ÖĞĞÄ¶ÔÆë£¬×¢Òâ¼«ĞÔ£©
+    // 5. è½¬æ¢ä¸ºPWMæ¯”è¾ƒå€¼ï¼ˆä¸­å¿ƒå¯¹é½ï¼Œæ³¨æ„ææ€§ï¼‰
     *ccra = (uint16_t)(T_s - Ta);
     *ccrb = (uint16_t)(T_s - Tb);
     *ccrc = (uint16_t)(T_s - Tc);
 
-    // 6. Êä³öµ½¶¨Ê±Æ÷£¨²»ĞèÒªÔÙ³Ë1000£©
+    // 6. è¾“å‡ºåˆ°å®šæ—¶å™¨ï¼ˆä¸éœ€è¦å†ä¹˜1000ï¼‰
     atim_timx_cplm_pwm_set(*ccra, 1);
     atim_timx_cplm_pwm_set(*ccrb, 2);
     atim_timx_cplm_pwm_set(*ccrc, 3);
 }
 
 
-#define PWM_Ts  ((float)PWM_PERIOD)  // PWMÖÜÆÚ£¨µ¥Î»£º¶¨Ê±Æ÷¼ÆÊı£©
-#define VBUS    Vref                 // Ä¸ÏßµçÑ¹
+#define PWM_Ts  ((float)PWM_PERIOD)  // PWMå‘¨æœŸï¼ˆå•ä½ï¼šå®šæ—¶å™¨è®¡æ•°ï¼‰
+#define VBUS    Vref                 // æ¯çº¿ç”µå‹
 
 void SVPWM_5Segment_CP(float Ualpha, float Ubeta, uint16_t *ccra, uint16_t *ccrb, uint16_t *ccrc)
 {
-    // 1. µçÑ¹Ê¸Á¿·ùÖµÏŞÖÆ (ÏßĞÔÇø)
+    // 1. ç”µå‹çŸ¢é‡å¹…å€¼é™åˆ¶ (çº¿æ€§åŒº)
     float Uref = sqrtf(Ualpha * Ualpha + Ubeta * Ubeta);
     float Umax = VBUS / SQRT3;
     if (Uref > Umax) {
@@ -298,19 +298,19 @@ void SVPWM_5Segment_CP(float Ualpha, float Ubeta, uint16_t *ccra, uint16_t *ccrb
         Uref = Umax;
     }
 
-    // 2. µçÑ¹¿Õ¼ä½Ç¶ÈÓëÉÈÇøÅĞ¶Ï
+    // 2. ç”µå‹ç©ºé—´è§’åº¦ä¸æ‰‡åŒºåˆ¤æ–­
     float angle = atan2f(Ubeta, Ualpha);
     if (angle < 0) angle += 2.0f * PI;
 
     uint8_t sector = (uint8_t)(angle / (PI / 3.0f));  // 0~5
-    float theta = angle - sector * (PI / 3.0f);       // ÉÈÇøÄÚÏà¶Ô½Ç¶È
+    float theta = angle - sector * (PI / 3.0f);       // æ‰‡åŒºå†…ç›¸å¯¹è§’åº¦
 
-    // 3. T1, T2 ¼ÆËã£¨¾­µä·¨£©
+    // 3. T1, T2 è®¡ç®—ï¼ˆç»å…¸æ³•ï¼‰
     float T1 = SQRT3 * Uref / VBUS * sinf(PI / 3.0f - theta);
     float T2 = SQRT3 * Uref / VBUS * sinf(theta);
     float T0 = 1.0f - T1 - T2;
 
-    // 4. Îå¶ÎÊ½·ÖÅä Ta, Tb, Tc (¹éÒ»»¯Ê±¼ä)
+    // 4. äº”æ®µå¼åˆ†é… Ta, Tb, Tc (å½’ä¸€åŒ–æ—¶é—´)
     float Ta = 0, Tb = 0, Tc = 0;
     float T0_half = T0 / 2.0f;
 
@@ -350,17 +350,17 @@ void SVPWM_5Segment_CP(float Ualpha, float Ubeta, uint16_t *ccra, uint16_t *ccrb
             break;
     }
 
-    // 5. ×ª»»ÎªPWM¼ÆÊıÖµ (ÖĞĞÄ¶ÔÆëÄ£Ê½)
+    // 5. è½¬æ¢ä¸ºPWMè®¡æ•°å€¼ (ä¸­å¿ƒå¯¹é½æ¨¡å¼)
     *ccra = (uint16_t)(Ta * PWM_PERIOD);
     *ccrb = (uint16_t)(Tb * PWM_PERIOD);
     *ccrc = (uint16_t)(Tc * PWM_PERIOD);
 
-    // 6. °²È«±ß½ç´¦Àí
+    // 6. å®‰å…¨è¾¹ç•Œå¤„ç†
     if (*ccra > PWM_PERIOD) *ccra = PWM_PERIOD;
     if (*ccrb > PWM_PERIOD) *ccrb = PWM_PERIOD;
     if (*ccrc > PWM_PERIOD) *ccrc = PWM_PERIOD;
 
-    // 7. Êä³öµ½PWM¼Ä´æÆ÷ (¼ÙÉèÊ¹ÓÃ TIMx µÄÈı¸öÍ¨µÀ)
+    // 7. è¾“å‡ºåˆ°PWMå¯„å­˜å™¨ (å‡è®¾ä½¿ç”¨ TIMx çš„ä¸‰ä¸ªé€šé“)
     atim_timx_cplm_pwm_set(*ccra, 1);
     atim_timx_cplm_pwm_set(*ccrb, 2);
     atim_timx_cplm_pwm_set(*ccrc, 3);
@@ -370,9 +370,9 @@ void SVPWM_5Segment_CP(float Ualpha, float Ubeta, uint16_t *ccra, uint16_t *ccrb
 
 void foc_main_svpwm(void)
 {
-	speed_rampup();//ËÙ¶Èrampup
-	my_motor.control.speed_el=my_motor.control.speed*my_motor.params.Poles;//µÃµ½µçÆø½ÇËÙ¶È
-	my_motor.control.angle_el=_normalizeAngle(my_motor.control.speed_el*Ts+my_motor.control.angle_el);//µÃµ½»¡¶È
+	speed_rampup();//é€Ÿåº¦rampup
+	my_motor.control.speed_el=my_motor.control.speed*my_motor.params.Poles;//å¾—åˆ°ç”µæ°”è§’é€Ÿåº¦
+	my_motor.control.angle_el=_normalizeAngle(my_motor.control.speed_el*Ts+my_motor.control.angle_el);//å¾—åˆ°å¼§åº¦
 	inverse_park_transform(0,my_motor.control.voltage0.vq,my_motor.control.angle_el,(float *)&my_motor.control.voltage1.valpha,(float *)&my_motor.control.voltage1.vbeta);
 	SVPWM_5Segment_CP(my_motor.control.voltage1.valpha,my_motor.control.voltage1.vbeta,(uint16_t  *)&my_motor.control.CCR.ccra,(uint16_t  *)&my_motor.control.CCR.ccrb,(uint16_t  *)&my_motor.control.CCR.ccrc);
 }

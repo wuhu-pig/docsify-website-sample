@@ -489,19 +489,9 @@
           <GroupName>Drive/lcd</GroupName>
           <Files>
             <File>
-              <FileName>GUI.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Drivers\SYSTEM\lcd\GUI.c</FilePath>
-            </File>
-            <File>
               <FileName>lcd_drive.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Drivers\SYSTEM\lcd\lcd_drive.c</FilePath>
-            </File>
-            <File>
-              <FileName>QDTFT_demo.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Drivers\SYSTEM\lcd\QDTFT_demo.c</FilePath>
             </File>
           </Files>
         </Group>
