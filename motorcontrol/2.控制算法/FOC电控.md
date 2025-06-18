@@ -89,13 +89,13 @@
    
    - 奇怪的是为什么我设置uq为6.5v时也超过12v，按照理论应该能到6.5v？？是不是我的计算精度问题？？
    
-   - ![image-20250612224131013](./FOC%E7%94%B5%E6%8E%A7.assets/image-20250612224131013.png)
+    ![image-20250612224131013](./FOC%E7%94%B5%E6%8E%A7.assets/image-20250612224131013.png)
    
-   - ![shot](./FOC%E7%94%B5%E6%8E%A7.assets/shot-1749739792143-2.png)
+    ![shot](./FOC%E7%94%B5%E6%8E%A7.assets/shot-1749739792143-2.png)
    
-   - ![image-20250612224242737](./FOC%E7%94%B5%E6%8E%A7.assets/image-20250612224242737.png)
+    ![image-20250612224242737](./FOC%E7%94%B5%E6%8E%A7.assets/image-20250612224242737.png)
    
-   - ![shot](./FOC%E7%94%B5%E6%8E%A7.assets/shot.png)
+    ![shot](./FOC%E7%94%B5%E6%8E%A7.assets/shot.png)
    
      ![shot](./FOC%E7%94%B5%E6%8E%A7.assets/shot-1749965562027-1.png)
    
@@ -140,52 +140,48 @@
 ### 一、Clark(e)变换（3s/2s变换）
 
 #### 1. 标准Clark变换（三相静止 → 两相静止）
-
-将三相坐标系 $abc$ 转换为两相静止坐标系 $αβ$，并消除零序分量（当$$i_a + i_b + i_c = 0$$时适用）：
-$$
+将三相坐标系 $abc$ 转换为两相静止坐标系 $αβ$，并消除零序分量（当 $i_a + i_b + i_c = 0$ 时适用）：
+```math
 \begin{bmatrix} i_\alpha \\ i_\beta  \end{bmatrix}  = \frac{2}{3}  \begin{bmatrix}  1 & -\frac{1}{2} & -\frac{1}{2} \\  0 & \frac{\sqrt{3}}{2} & -\frac{\sqrt{3}}{2}  \end{bmatrix}  \begin{bmatrix} i_a \\ i_b \\ i_c  \end{bmatrix}
-$$
+```
+**应用场景**：三相电机的αβ坐标系分析
 
 ---
 
-应用场景：三相电机的αβ坐标系分析
-
 #### 2. 等幅值Clark变换（需保留幅值不变）
-
 通过系数调整确保幅值等效：
-$$
+```math
 \begin{bmatrix} i_\alpha \\ i_\beta  \end{bmatrix}  = \sqrt{\frac{2}{3}}  \begin{bmatrix}  1 & -\frac{1}{2} & -\frac{1}{2} \\  0 & \frac{\sqrt{3}}{2} & -\frac{\sqrt{3}}{2}  \end{bmatrix}  \begin{bmatrix} i_a \\ i_b \\ i_c  \end{bmatrix}
-$$
+```
+> 注释：适用于需保持幅值一致性的场景（如锁相环设计）
 
-注释：适用于需保持幅值一致性的场景（如锁相环设计）
+---
 
 #### 3. Clark逆变换（两相静止 → 三相静止）
-
 从 $αβ$ 坐标系恢复到 $abc$ 坐标系（需设定零序分量或约束条件）：
-$$
+```math
 \begin{bmatrix} i_a \\ i_b \\ i_c  \end{bmatrix}  =  \begin{bmatrix}  1 & 0 \\ -\frac{1}{2} & \frac{\sqrt{3}}{2} \\ -\frac{1}{2} & -\frac{\sqrt{3}}{2}  \end{bmatrix}  \begin{bmatrix} i_\alpha \\ i_\beta  \end{bmatrix}
-$$
+```
+> 误差来源：三相不平衡时零序分量丢失
 
-误差来源：三相不平衡时零序分量丢失
+---
 
 ### 二、Park变换（2s/2r变换）
 
 #### 1. 标准Park变换（两相静止 → 两相旋转）
-
 以转子磁场同步角 $\theta$ 进行旋转坐标系 $dq$ 变换：
-$$
- \begin{bmatrix} i_d \\ i_q  \end{bmatrix}  =  \begin{bmatrix}  \cos\theta & \sin\theta \\  -\sin\theta & \cos\theta  \end{bmatrix}  \begin{bmatrix} i_\alpha \\ i_\beta  \end{bmatrix} 
-$$
+```math
+\begin{bmatrix} i_d \\ i_q  \end{bmatrix}  =  \begin{bmatrix}  \cos\theta & \sin\theta \\  -\sin\theta & \cos\theta  \end{bmatrix}  \begin{bmatrix} i_\alpha \\ i_\beta  \end{bmatrix} 
+```
+**应用场景**：电机转矩与磁场解耦控制
 
-应用场景：电机转矩与磁场解耦控制
+---
 
 #### 2. Park逆变换（两相旋转 → 两相静止）
-
 从 $dq$ 坐标系返回 $αβ$ 坐标系：
-$$
+```math
 \begin{bmatrix} i_\alpha \\ i_\beta  \end{bmatrix}  =  \begin{bmatrix}  \cos\theta & -\sin\theta \\  \sin\theta & \cos\theta  \end{bmatrix}  \begin{bmatrix} i_d \\ i_q  \end{bmatrix}
-$$
-
+```
 误差来源：角度估算误差可能导致解耦失效
 
 ### 三、关键误差源与优化策略
