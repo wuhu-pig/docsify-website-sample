@@ -9,7 +9,7 @@
 #define ONE_BY_SQRT3 	0.57735026919f
 #define SQRT3_BY_2  	0.86602540378f
 
-#define RAMPSTEP 			0.01
+#define RAMPSTEP 			0.0001
 #define MAXSPEED 			5					//单位 rad/s  2*2pi/60=2*2*180/60=12度/s
 #define Ts 						0.001			//1ms
 #define Vref 					12				//电源电压12v

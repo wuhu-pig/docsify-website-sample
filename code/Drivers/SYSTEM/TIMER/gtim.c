@@ -106,7 +106,7 @@ void gtim_timx_int_init(uint16_t arr, uint16_t psc)
     GTIM_TIMX_INT->PSC = psc;           /* 设置预分频器  */
     GTIM_TIMX_INT->DIER |= 1 << 0;      /* 允许更新中断 */
     GTIM_TIMX_INT->CR1 |= 1 << 0;       /* 使能定时器TIMX */
-    sys_nvic_init(1, 3, GTIM_TIMX_INT_IRQn, 2); /* 抢占1，子优先级3，组2 */
+    sys_nvic_init(1, 3, GTIM_TIMX_INT_IRQn, 3); /* 抢占1，子优先级3，组2 */
 }
 
 

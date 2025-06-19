@@ -56,7 +56,7 @@ void dma_init(void)
     DMA2_Stream0->CR |= (0 << 21);                      // 通道选择：通道0（ADC1）
     DMA2_Stream0->CR |= DMA_SxCR_TCIE;                  // 开启传输完成中断
 
-    NVIC_SetPriority(DMA2_Stream0_IRQn, 1);
+    NVIC_SetPriority(DMA2_Stream0_IRQn, 2);
     NVIC_EnableIRQ(DMA2_Stream0_IRQn);
 
     DMA2_Stream0->CR |= DMA_SxCR_EN;                    // 启动DMA

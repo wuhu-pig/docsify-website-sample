@@ -113,10 +113,21 @@ void phasesetpwm(float *a, float *b, float *c,uint16_t *ccra,uint16_t *ccrb,uint
 	*ccra=_constrain(*a*1000/Vref, 0, 1000 );
 	*ccrb=_constrain(*b*1000/Vref, 0, 1000 );
 	*ccrc=_constrain(*c*1000/Vref, 0, 1000 );
-	atim_timx_cplm_pwm_set(*ccra*PWM_PERIOD,1);
-	atim_timx_cplm_pwm_set(*ccrb*PWM_PERIOD,2);
-	atim_timx_cplm_pwm_set(*ccrc*PWM_PERIOD,3);
+	atim_timx_cplm_pwm_set(*ccra,1);
+	atim_timx_cplm_pwm_set(*ccrb,2);
+	atim_timx_cplm_pwm_set(*ccrc,3);
 }
+
+void foc_main_spwmq(void)
+{
+	speed_rampup();//速度rampup
+	my_motor.control.speed_el=my_motor.control.speed*my_motor.params.Poles;//得到电气角速度
+	my_motor.control.angle_el=_normalizeAngle(my_motor.control.speed_el*Ts+my_motor.control.angle_el);//得到弧度
+	inverse_park_transform(0,my_motor.control.voltage0.vq,my_motor.control.angle_el,(float *)&my_motor.control.voltage1.valpha,(float *)&my_motor.control.voltage1.vbeta);
+	inverse_clarke_transform(my_motor.control.voltage1.valpha,my_motor.control.voltage1.vbeta,(float *)&my_motor.control.voltage2.va,(float *)&my_motor.control.voltage2.vb,(float *)&my_motor.control.voltage2.vc);
+	phasesetpwm((float *)&my_motor.control.voltage2.va,(float *)&my_motor.control.voltage2.vb,(float *)&my_motor.control.voltage2.vc,(uint16_t  *)&my_motor.control.CCR.ccra,(uint16_t  *)&my_motor.control.CCR.ccrb,(uint16_t  *)&my_motor.control.CCR.ccrc);
+}
+
 
 void foc_main_spwm(void)
 {
@@ -124,7 +135,7 @@ void foc_main_spwm(void)
 	my_motor.control.speed_el=my_motor.control.speed*my_motor.params.Poles;//得到电气角速度
 	my_motor.control.angle_el=_normalizeAngle(my_motor.control.speed_el*Ts+my_motor.control.angle_el);//得到弧度
 	inverse_park_transform(0,my_motor.control.voltage0.vq,my_motor.control.angle_el,(float *)&my_motor.control.voltage1.valpha,(float *)&my_motor.control.voltage1.vbeta);
-	inverse_clarke_transform_with_3rd_harmonic_ai(my_motor.control.voltage1.valpha,my_motor.control.voltage1.vbeta,(float *)&my_motor.control.voltage2.va,(float *)&my_motor.control.voltage2.vb,(float *)&my_motor.control.voltage2.vc);
+	inverse_clarke_transform(my_motor.control.voltage1.valpha,my_motor.control.voltage1.vbeta,(float *)&my_motor.control.voltage2.va,(float *)&my_motor.control.voltage2.vb,(float *)&my_motor.control.voltage2.vc);
 	phasesetpwm((float *)&my_motor.control.voltage2.va,(float *)&my_motor.control.voltage2.vb,(float *)&my_motor.control.voltage2.vc,(uint16_t  *)&my_motor.control.CCR.ccra,(uint16_t  *)&my_motor.control.CCR.ccrb,(uint16_t  *)&my_motor.control.CCR.ccrc);
 }
 

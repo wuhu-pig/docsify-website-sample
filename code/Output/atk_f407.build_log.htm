@@ -21,69 +21,28 @@ Target DLL:      STLink\ST-LINKIII-KEIL_SWO.dll V3.0.9.0
 Dialog DLL:      TCM.DLL V1.53.0.0
  
 <h2>Project:</h2>
-C:\Users\yourfather\Desktop\stm32f407\github\20250617\1\docsify-website-sample\code\Projects\MDK-ARM\atk_f407.uvprojx
-Project File Date:  06/17/2025
+C:\Users\yourfather\Desktop\stm32f407\github\20250619\docsify-website-sample\code\Projects\MDK-ARM\atk_f407.uvprojx
+Project File Date:  06/19/2025
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 7 (build 960)', folder: 'D:\1.sofeware\keil5\ARM\ARMCC\Bin'
-Rebuild target 'USART'
-assembling startup_stm32f407xx.s...
-compiling delay.c...
-compiling i2c.c...
-..\..\Drivers\SYSTEM\i2c\i2c.c(161): warning:  #61-D: integer operation result is out of range
-      GPIOB->AFR[0] &= ~((0xF << (6 * 4)) | (0xF << (7 * 4)));
-..\..\Drivers\SYSTEM\i2c\i2c.c: 1 warning, 0 errors
-compiling usart.c...
-compiling sys.c...
-compiling led.c...
-compiling as5600.c...
-..\..\Drivers\SYSTEM\AS5600\as5600.c(324): warning:  #68-D: integer conversion resulted in a change of sign
-      uint8_t retVal = -1;
-..\..\Drivers\SYSTEM\AS5600\as5600.c(340): warning:  #68-D: integer conversion resulted in a change of sign
-      uint16_t retVal = -1;
-..\..\Drivers\SYSTEM\AS5600\as5600.c(599): warning:  #68-D: integer conversion resulted in a change of sign
-                  retVal = -3;
-..\..\Drivers\SYSTEM\AS5600\as5600.c(604): warning:  #68-D: integer conversion resulted in a change of sign
-              retVal = -2;
-..\..\Drivers\SYSTEM\AS5600\as5600.c(607): warning:  #68-D: integer conversion resulted in a change of sign
-          retVal = -1;
-..\..\Drivers\SYSTEM\AS5600\as5600.c(627): warning:  #68-D: integer conversion resulted in a change of sign
-              retVal = -2;
-..\..\Drivers\SYSTEM\AS5600\as5600.c(632): warning:  #68-D: integer conversion resulted in a change of sign
-          retVal = -1;
-..\..\Drivers\SYSTEM\AS5600\as5600.c: 7 warnings, 0 errors
-compiling atim.c...
-compiling spi.c...
-..\..\Drivers\SYSTEM\spi\spi.c(98): warning:  #1-D: last line of file ends without a newline
-  }
-..\..\Drivers\SYSTEM\spi\spi.c: 1 warning, 0 errors
-compiling gtim.c...
-compiling adc.c...
-compiling main.c...
-..\..\User\main.c(22): warning:  #177-D: variable "t"  was declared but never referenced
-  		float t = 0;
-..\..\User\main.c(23): warning:  #177-D: variable "retval"  was declared but never referenced
-  		status_t retval;
-..\..\User\main.c: 2 warnings, 0 errors
-compiling Axis_transform.c...
-compiling PI_Cale.c...
-compiling IQ_math.c...
-compiling Svpwm_dq.c...
-compiling lcd_drive.c...
+Build target 'USART'
 compiling foc.c...
 ..\..\Drivers\SYSTEM\motor\foc.c(43): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   				my_motor.control.speed+=RAMPSTEP;
 ..\..\Drivers\SYSTEM\motor\foc.c(125): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   	my_motor.control.angle_el=_normalizeAngle(my_motor.control.speed_el*Ts+my_motor.control.angle_el);//得到弧度
-..\..\Drivers\SYSTEM\motor\foc.c(375): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+..\..\Drivers\SYSTEM\motor\foc.c(136): warning:  #1035-D: single-precision operand implicitly converted to double-precision
   	my_motor.control.angle_el=_normalizeAngle(my_motor.control.speed_el*Ts+my_motor.control.angle_el);//得到弧度
-..\..\Drivers\SYSTEM\motor\foc.c(378): warning:  #1-D: last line of file ends without a newline
+..\..\Drivers\SYSTEM\motor\foc.c(386): warning:  #1035-D: single-precision operand implicitly converted to double-precision
+  	my_motor.control.angle_el=_normalizeAngle(my_motor.control.speed_el*Ts+my_motor.control.angle_el);//得到弧度
+..\..\Drivers\SYSTEM\motor\foc.c(389): warning:  #1-D: last line of file ends without a newline
   }
-..\..\Drivers\SYSTEM\motor\foc.c: 4 warnings, 0 errors
+..\..\Drivers\SYSTEM\motor\foc.c: 5 warnings, 0 errors
 linking...
-Program Size: Code=13488 RO-data=744 RW-data=12 ZI-data=2124  
+Program Size: Code=15368 RO-data=888 RW-data=12 ZI-data=2124  
 FromELF: creating hex file...
-"..\..\Output\atk_f407.axf" - 0 Error(s), 15 Warning(s).
+"..\..\Output\atk_f407.axf" - 0 Error(s), 5 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -95,7 +54,7 @@ Package Vendor: Keil
 <h2>Collection of Component include folders:</h2>
 
 <h2>Collection of Component Files used:</h2>
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:01
 </pre>
 </body>
 </html>
