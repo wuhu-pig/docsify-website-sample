@@ -12,3 +12,4 @@
     - [FOC电控](/motorcontrol/2.控制算法/FOC电控.md)
   - [3.好玩的项目](/motorcontrol/3.好玩的项目/)
     - [轮趣科技引脚分配](/motorcontrol/3.好玩的项目/轮趣科技引脚分配.md)
+    - [Simulink学习](/motorcontrol/4.Simulink学习/Simulink学习.md)
