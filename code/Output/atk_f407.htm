@@ -3,7 +3,7 @@
 <title>Static Call Graph - [..\..\Output\atk_f407.axf]</title></head>
 <body><HR>
 <H1>Static Call Graph for image ..\..\Output\atk_f407.axf</H1><HR>
-<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Thu Jun 19 22:38:28 2025
+<BR><P>#&#060CALLGRAPH&#062# ARM Linker, 5060960: Last Updated: Sun Jun 22 09:43:13 2025
 <BR><P>
 <H3>Maximum Stack Usage =        324 bytes + Unknown(Functions without stacksize, Cycles, Untraceable Function Pointers)</H3><H3>
 Call chain for Maximum Stack Depth:</H3>
@@ -826,7 +826,7 @@ Global Symbols
 <BR>[Address Reference Count : 1]<UL><LI> startup_stm32f407xx.o(RESET)
 </UL>
 <P><STRONG><a name="[39]"></a>TIM8_UP_TIM13_IRQHandler</STRONG> (Thumb, 46 bytes, Stack size 8 bytes, atim.o(i.TIM8_UP_TIM13_IRQHandler))
-<BR><BR>[Stack]<UL><LI>Max Depth = 304<LI>Call Chain = TIM8_UP_TIM13_IRQHandler &rArr; foc_main_spwm &rArr; inverse_park_transform &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
+<BR><BR>[Stack]<UL><LI>Max Depth = 264<LI>Call Chain = TIM8_UP_TIM13_IRQHandler &rArr; foc_main_spwm &rArr; inverse_park_transform &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
 </UL>
 <BR>[Calls]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;foc_main_spwm
 </UL>
@@ -1014,14 +1014,10 @@ Global Symbols
 <BR><BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[93]"></a>foc_main_spwm</STRONG> (Thumb, 216 bytes, Stack size 56 bytes, foc.o(i.foc_main_spwm))
-<BR><BR>[Stack]<UL><LI>Max Depth = 296<LI>Call Chain = foc_main_spwm &rArr; inverse_park_transform &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
+<P><STRONG><a name="[93]"></a>foc_main_spwm</STRONG> (Thumb, 146 bytes, Stack size 16 bytes, foc.o(i.foc_main_spwm))
+<BR><BR>[Stack]<UL><LI>Max Depth = 256<LI>Call Chain = foc_main_spwm &rArr; inverse_park_transform &rArr; __hardfp_sin &rArr; __ieee754_rem_pio2 &rArr; __aeabi_dmul
 </UL>
-<BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[a2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dmul
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;speed_rampup
+<BR>[Calls]<UL><LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;speed_rampup
 <LI><a href="#[b2]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;phasesetpwm
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inverse_park_transform
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inverse_clarke_transform
@@ -1073,7 +1069,7 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 </UL>
 
-<P><STRONG><a name="[73]"></a>main</STRONG> (Thumb, 160 bytes, Stack size 24 bytes, main.o(i.main))
+<P><STRONG><a name="[73]"></a>main</STRONG> (Thumb, 158 bytes, Stack size 24 bytes, main.o(i.main))
 <BR><BR>[Stack]<UL><LI>Max Depth = 152 + Unknown Stack Size
 <LI>Call Chain = main &rArr; __2printf &rArr; _printf_char_file &rArr; _printf_char_common &rArr; __printf
 </UL>
@@ -1105,14 +1101,8 @@ Global Symbols
 <BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;foc_main_spwm
 </UL>
 
-<P><STRONG><a name="[af]"></a>speed_rampup</STRONG> (Thumb, 92 bytes, Stack size 24 bytes, foc.o(i.speed_rampup))
-<BR><BR>[Stack]<UL><LI>Max Depth = 56<LI>Call Chain = speed_rampup &rArr; __aeabi_d2f
-</UL>
-<BR>[Calls]<UL><LI><a href="#[aa]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_f2d
-<LI><a href="#[a0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_dadd
-<LI><a href="#[ab]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__aeabi_d2f
-</UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;foc_main_spwm
+<P><STRONG><a name="[af]"></a>speed_rampup</STRONG> (Thumb, 56 bytes, Stack size 0 bytes, foc.o(i.speed_rampup))
+<BR><BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;foc_main_spwm
 </UL>
 
 <P><STRONG><a name="[c4]"></a>sys_clock_set</STRONG> (Thumb, 382 bytes, Stack size 20 bytes, sys.o(i.sys_clock_set))
@@ -1199,9 +1189,7 @@ Global Symbols
 <P><STRONG><a name="[ab]"></a>__aeabi_d2f</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, d2f.o(x$fpl$d2f))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_d2f
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;foc_main_spwm
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;speed_rampup
-<LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inverse_park_transform
+<BR>[Called By]<UL><LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inverse_park_transform
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inverse_clarke_transform
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_normalizeAngle
 </UL>
@@ -1214,9 +1202,7 @@ Global Symbols
 <P><STRONG><a name="[a0]"></a>__aeabi_dadd</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, daddsub_clz.o(x$fpl$dadd))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_dadd
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;foc_main_spwm
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;speed_rampup
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inverse_clarke_transform
+<BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inverse_clarke_transform
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
@@ -1266,8 +1252,7 @@ Global Symbols
 <P><STRONG><a name="[a2]"></a>__aeabi_dmul</STRONG> (Thumb, 0 bytes, Stack size 32 bytes, dmul.o(x$fpl$dmul))
 <BR><BR>[Stack]<UL><LI>Max Depth = 32<LI>Call Chain = __aeabi_dmul
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;foc_main_spwm
-<LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inverse_clarke_transform
+<BR>[Called By]<UL><LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inverse_clarke_transform
 <LI><a href="#[98]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_sin
 <LI><a href="#[97]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__ieee754_rem_pio2
 <LI><a href="#[a6]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;__kernel_poly
@@ -1338,9 +1323,7 @@ Global Symbols
 <P><STRONG><a name="[aa]"></a>__aeabi_f2d</STRONG> (Thumb, 0 bytes, Stack size 16 bytes, f2d.o(x$fpl$f2d))
 <BR><BR>[Stack]<UL><LI>Max Depth = 16<LI>Call Chain = __aeabi_f2d
 </UL>
-<BR>[Called By]<UL><LI><a href="#[93]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;foc_main_spwm
-<LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
-<LI><a href="#[af]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;speed_rampup
+<BR>[Called By]<UL><LI><a href="#[73]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;main
 <LI><a href="#[b0]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inverse_park_transform
 <LI><a href="#[b1]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;inverse_clarke_transform
 <LI><a href="#[a9]">&gt;&gt;</a>&nbsp;&nbsp;&nbsp;_normalizeAngle

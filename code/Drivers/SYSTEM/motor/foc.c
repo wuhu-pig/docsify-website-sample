@@ -377,8 +377,6 @@ void SVPWM_5Segment_CP(float Ualpha, float Ubeta, uint16_t *ccra, uint16_t *ccrb
     atim_timx_cplm_pwm_set(*ccrc, 3);
 }
 
-
-
 void foc_main_svpwm(void)
 {
 	speed_rampup();//速度rampup

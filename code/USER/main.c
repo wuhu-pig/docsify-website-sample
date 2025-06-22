@@ -19,8 +19,6 @@
 uint16_t angle;
 int main(void)
 {
-		float t = 0;
-		status_t retval;
     sys_stm32_clock_init(336, 8, 2, 7);     /* 设置时钟,168Mhz */
     delay_init(168);                        /* 延时初始化 */
     usart_init(84, 115200);                 /* 串口初始化为115200 */

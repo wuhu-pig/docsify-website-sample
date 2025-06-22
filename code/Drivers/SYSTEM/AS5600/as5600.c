@@ -317,14 +317,14 @@ uint8_t lowByte(uint16_t value)
 /**
  * @brief 从AS5600寄存器读取一个字节
  * @param in_adr: 要读取的寄存器地址
- * @return 读取到的寄存器值
+ * @return 读取到的寄存器值，-1表示错误
  */
-uint8_t readOneByte(uint8_t in_adr)
+int8_t readOneByte(uint8_t in_adr)
 {
-    uint8_t retVal = -1;
+    int8_t retVal = AS5600_ERROR;
     
     // 通过I2C读取数据
-    Sim_I2C_Read8(_ams5600_Address, in_adr, 1, &retVal);
+    Sim_I2C_Read8(_ams5600_Address, in_adr, 1, (uint8_t*)&retVal);
     Sim_I2C1_NOP;
     return retVal;
 }
@@ -333,11 +333,11 @@ uint8_t readOneByte(uint8_t in_adr)
  * @brief 从AS5600连续读取两个字节
  * @param in_adr_hi: 高字节寄存器地址
  * @param in_adr_lo: 低字节寄存器地址
- * @return 组合后的16位值
+ * @return 组合后的16位值，-1表示错误
  */
-uint16_t readTwoBytes(uint8_t in_adr_hi, uint8_t in_adr_lo)
+int16_t readTwoBytes(uint8_t in_adr_hi, uint8_t in_adr_lo)
 {
-    uint16_t retVal = -1;
+    int16_t retVal = AS5600_ERROR;
     uint8_t low = 0, high = 0;
     
     /* 读取低字节 */
@@ -584,9 +584,9 @@ uint8_t getMagnetStrength(void)
  *         -3: Start and end positions not set
  * @warning This operation is permanent and can only be performed 3 times
  */
-uint8_t burnAngle()
+int8_t burnAngle()
 {
-    uint8_t retVal = 1;
+    int8_t retVal = 1;
     _zPosition = getStartPosition();
     _mPosition = getEndPosition();
     _maxAngle  = getMaxAngle();
@@ -616,9 +616,9 @@ uint8_t burnAngle()
  *         -2 max angle is to small, must be at or above 18 degrees
  * @note This can only be done 1 time
  */
-uint8_t burnMaxAngleAndConfig()
+int8_t burnMaxAngleAndConfig()
 {
-    uint8_t retVal = 1;
+    int8_t retVal = 1;
     _maxAngle  = getMaxAngle();
     
     if(getBurnCount() ==0)

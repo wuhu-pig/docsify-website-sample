@@ -48,6 +48,10 @@
 
 #define AS5600_ADDRESS_MAG        0x36        /* AS5600的I2C地址 */
 
+/* 错误代码定义 */
+#define AS5600_ERROR -1
+#define AS5600_SUCCESS 0
+
 /* AS5600寄存器地址枚举定义 */
 typedef enum
 {
@@ -76,6 +80,13 @@ extern float degress;
 void iic_init(void);            /* I2C初始化函数 */
 void PrintMenu(void);           /* 打印菜单函数 */
 void Programe_Run(void);        /* 程序运行主函数 */
+
+/* AS5600核心函数声明 */
+int8_t readOneByte(uint8_t in_adr);                    /* 读取一个字节 */
+int16_t readTwoBytes(uint8_t in_adr_hi, uint8_t in_adr_lo); /* 读取两个字节 */
+void writeOneByte(uint8_t adr_in, uint8_t dat_in);     /* 写入一个字节 */
+int8_t burnAngle(void);                               /* 烧录角度配置 */
+int8_t burnMaxAngleAndConfig(void);                   /* 烧录最大角度和配置 */
 
 #endif  /* __AS5600_H */
 		
