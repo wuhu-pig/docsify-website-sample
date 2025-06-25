@@ -71,10 +71,3 @@
 
 ![ScreenImg (1)](./TIM.assets/ScreenImg%20(1).png)
 
-![image-20250619230829400](./TIM.assets/image-20250619230829400.png)
-
-![image-20250619230725049](./TIM.assets/image-20250619230725049.png)
-
-![image-20250619230900901](./TIM.assets/image-20250619230900901.png)
-
-![image-20250619230953271](./TIM.assets/image-20250619230953271.png)

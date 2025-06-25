@@ -12,3 +12,7 @@
 ..\..\output\adc.o: ..\..\Drivers\SYSTEM\led\led.h
 ..\..\output\adc.o: ..\..\Drivers\SYSTEM\dma\dma.h
 ..\..\output\adc.o: ..\..\Drivers\SYSTEM\delay\delay.h
+..\..\output\adc.o: ..\..\Drivers\SYSTEM\motor\foc.h
+..\..\output\adc.o: ..\..\Drivers\SYSTEM\usart\usart.h
+..\..\output\adc.o: D:\1.sofeware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
+..\..\output\adc.o: D:\1.sofeware\keil5\ARM\ARMCC\Bin\..\include\math.h

@@ -9,8 +9,8 @@
 #define ONE_BY_SQRT3 	0.57735026919f
 #define SQRT3_BY_2  	0.86602540378f
 
-#define RAMPSTEP 			0.01f
-#define MAXSPEED 			200					//单位 rad/s  2*2pi/60=2*2*180/60=12度/s
+#define RAMPSTEP 			0.0001f
+#define MAXSPEED 			5					//单位 rad/s  2*2pi/60=2*2*180/60=12度/s
 #define Ts 						0.001f			//1ms
 #define Vref 					12				//电源电压12v
 #define Vrefby2 			6					//电源电压12v
@@ -99,9 +99,6 @@ typedef struct {
 
 // 电机控制状态机
 typedef enum {
-		MOTOR_PAREE,				//电机启动前准备
-		MOTOR_CURRENT_CAL,  //电机电流校准完毕
-		MOTOR_STATUS_OK,    //电机准备就绪
     MOTOR_STOPPED,      // 电机停止
     MOTOR_ALIGNMENT,    // 预定位
     MOTOR_OPEN_LOOP,    // 开环启动
@@ -137,7 +134,6 @@ typedef struct{
 }Motor_t; 
 
 extern Motor_t my_motor;
-extern Motor_State  motor_state;
 extern void foc_init(void);
 extern void foc_main_spwm(void);
 extern void foc_main_svpwm(void);

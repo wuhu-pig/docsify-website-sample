@@ -16,9 +16,6 @@
 ..\..\output\main.o: ..\..\Drivers\SYSTEM\timer\atim.h
 ..\..\output\main.o: ..\..\Drivers\SYSTEM\timer\gtim.h
 ..\..\output\main.o: ..\..\Drivers\SYSTEM\adc\adc.h
-..\..\output\main.o: ..\..\Drivers\SYSTEM\lcd\QDTFT_demo.h
-..\..\output\main.o: ..\..\Drivers\SYSTEM\lcd\lcd_drive.h
-..\..\output\main.o: ..\..\Drivers\SYSTEM\lcd\GUI.h
 ..\..\output\main.o: D:\1.sofeware\keil5\ARM\ARMCC\Bin\..\include\math.h
 ..\..\output\main.o: ..\..\Drivers\SYSTEM\motor\motor.h
 ..\..\output\main.o: ..\..\Drivers\SYSTEM\motor\status.h

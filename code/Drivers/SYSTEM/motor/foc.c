@@ -3,7 +3,7 @@
 #include "atim.h"
 
 Motor_t my_motor;
-
+Motor_State  motor_state;
 void foc_init(void)
 {
 	//参数初始化
@@ -29,20 +29,25 @@ void foc_init(void)
 	my_motor.pid.output_limit=100;//输出限幅	
 	
 	my_motor.control.maxspeed=MAXSPEED;
-	my_motor.control.targetspeed=1;
+	my_motor.control.targetspeed=10;
 	my_motor.control.voltage0.vq=Vref/2;
 	//电机状态初始化
 	my_motor.state=MOTOR_STOPPED;
 }
 void speed_rampup(void)
 {
-	if(my_motor.control.speed<=my_motor.control.maxspeed)
+	if(my_motor.control.targetspeed<=my_motor.control.maxspeed)
 	{
 		if(my_motor.control.speed<my_motor.control.targetspeed)
-			{
-				my_motor.control.speed+=RAMPSTEP;
-			}
+		{
+			my_motor.control.speed+=RAMPSTEP;
+		}
+		if(my_motor.control.speed>my_motor.control.targetspeed)
+		{
+			my_motor.control.speed-=RAMPSTEP;
+		}
 	}
+		
 }
 	
 // Park逆变换：两相旋转（dq）→两相静止（αβ）[theta单位为弧度]

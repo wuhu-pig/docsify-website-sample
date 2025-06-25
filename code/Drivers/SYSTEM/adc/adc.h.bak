@@ -39,7 +39,7 @@ typedef struct {
 #define ADC_ADCX                            ADC1 
 #define ADC_ADCX_CHY                        5                                       /* 通道Y,  0 <= Y <= 19 */ 
 #define ADC_ADCX_CHY_CLK_ENABLE()           do{ RCC->APB2ENR |= 1 << 8; }while(0)   /* ADC1 时钟使能 */
-#define ADC_CHANNEL_NUM  3  // 比如采集3路ADC通道
+#define ADC_CHANNEL_NUM  5  // 比如采集3路ADC通道
 
 
 /* ADC单通道/多通道 DMA采集 DMA数据流相关 定义 
@@ -57,24 +57,10 @@ typedef struct {
 
 /******************************************************************************************/
 extern  uint16_t g_adc_dma_buf[ADC_DMA_BUF_SIZE];       /* ADC DMA BUF */
-extern float current_offset[ADC_CHANNEL_NUM] ;
 extern uint8_t g_adc_dma_sta;     
 extern uint16_t adc_buffer[ADC_CHANNEL_NUM];  // DMA搬运目标地址
 extern void adc_init(void);
 extern void dma_init(void);
-
-// 电流获取函数
-extern float get_phase_current(uint8_t channel);
-extern float get_phase_current_raw(uint8_t channel);
-extern void get_three_phase_currents(float* ia, float* ib, float* ic);
-extern void foc_current_control_example(float* ia, float* ib, float* ic);
-extern void calibrate_current_offset(void);
-
-// 过流保护函数
-extern uint8_t check_overcurrent(float ia, float ib, float ic);
-extern uint8_t get_overcurrent_status(void);
-extern void clear_overcurrent_flag(void);
-
 #endif 
 
 
