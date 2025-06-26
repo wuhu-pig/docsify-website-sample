@@ -459,26 +459,6 @@
           <GroupName>Drivers/motor</GroupName>
           <Files>
             <File>
-              <FileName>Axis_transform.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Drivers\SYSTEM\motor\Axis_transform.c</FilePath>
-            </File>
-            <File>
-              <FileName>IQ_math.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Drivers\SYSTEM\motor\IQ_math.c</FilePath>
-            </File>
-            <File>
-              <FileName>PI_Cale.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Drivers\SYSTEM\motor\PI_Cale.c</FilePath>
-            </File>
-            <File>
-              <FileName>Svpwm_dq.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Drivers\SYSTEM\motor\Svpwm_dq.c</FilePath>
-            </File>
-            <File>
               <FileName>foc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Drivers\SYSTEM\motor\foc.c</FilePath>
