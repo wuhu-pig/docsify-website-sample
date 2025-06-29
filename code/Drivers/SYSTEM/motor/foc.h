@@ -138,6 +138,7 @@ typedef struct{
 
 extern Motor_t my_motor;
 extern Motor_State  motor_state;
+extern uint8_t MotorRotateValue;//电机旋转圈数
 extern void foc_init(void);
 extern void foc_main_spwm(void);
 extern void foc_main_svpwm(void);

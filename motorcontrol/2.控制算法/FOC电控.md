@@ -127,6 +127,283 @@
 
 ## **闭环控制 -电流环/速度环/位置环**
 
+#### 位置环
+
+##### 系统架构
+
+```
++---------------+     +-------------+     +---------------+     +---------------+
+|  目标位置     |----> |  增量式PID  |---->| 电机驱动器    |----> | 电机+负载     |
+| (Setpoint)    |     | 控制器      |     | (如H桥)       |     |               |
++---------------+     +-------------+     +---------------+     +---------------+
+                          ^                                         |
+                          |                                         |
+                          |                                         v
+                          +-------------------------------------+ AS5600
+                                                                  | 磁性编码器
+                                                                  | (位置反馈)
+```
+
+##### 实现步骤
+
+1. 硬件连接
+
+- AS5600连接：
+  - VCC: 3.3V或5V
+  - GND: 地
+  - SDA: I2C数据线
+  - SCL: I2C时钟线
+  - OUT: 模拟输出（可选备用）
+- 电机驱动连接：
+  - 根据你的电机类型（直流/步进）连接驱动电路
+
+2. PID结构体定义 (pid.h)
+
+```c
+typedef struct {
+    float Kp;           // 比例系数
+    float Ki;           // 积分系数
+    float Kd;           // 微分系数
+    float Ts;           // 采样时间(秒)
+    
+    // 误差历史记录
+    float err_prev;     // e[k-1] 上一次误差
+    float err_prev2;    // e[k-2] 上上次误差
+    
+    // 输出限制
+    float output_max;   // 最大输出限制
+    float output_min;   // 最小输出限制
+    
+    // 积分抗饱和
+    float integral_max; // 积分项最大值限制
+    float integral_min; // 积分项最小值限制
+    float integral;     // 积分累积值
+} PID;
+```
+
+3. PID初始化函数 (pid.c)
+
+```c
+void PID_Init(PID* pid, float kp, float ki, float kd, float ts, 
+              float out_min, float out_max) {
+    pid->Kp = kp;
+    pid->Ki = ki;
+    pid->Kd = kd;
+    pid->Ts = ts;
+    
+    // 初始化误差历史
+    pid->err_prev = 0.0f;
+    pid->err_prev2 = 0.0f;
+    
+    // 设置输出限制
+    pid->output_min = out_min;
+    pid->output_max = out_max;
+    
+    // 积分抗饱和设置
+    pid->integral_min = out_min * 0.5f; // 经验值
+    pid->integral_max = out_max * 0.5f;
+    pid->integral = 0.0f;
+}
+```
+
+4. 增量式PID计算函数 (pid.c)
+
+```c
+float PID_Incremental(PID* pid, float current, float target) {
+    // 计算当前误差
+    float err = target - current;
+    
+    // 计算增量式PID各项
+    float P = pid->Kp * (err - pid->err_prev);
+    float I = pid->Ki * err * pid->Ts;
+    float D = pid->Kd * (err - 2.0f * pid->err_prev + pid->err_prev2) / pid->Ts;
+    
+    // 计算总增量
+    float delta_output = P + I + D;
+    
+    // 积分抗饱和处理
+    float new_integral = pid->integral + I;
+    if (new_integral > pid->integral_max) {
+        new_integral = pid->integral_max;
+    } else if (new_integral < pid->integral_min) {
+        new_integral = pid->integral_min;
+    }
+    pid->integral = new_integral;
+    
+    // 更新误差历史
+    pid->err_prev2 = pid->err_prev;
+    pid->err_prev = err;
+    
+    // 计算最终输出（增量式PID通常输出增量）
+    return delta_output;
+}
+```
+
+##### 主控制循环 (main.c)
+
+```c
+#include "main.h"
+#include "pid.h"
+#include "as5600.h"
+#include "motor_driver.h" // 你的电机驱动头文件
+
+// PID控制器实例
+PID position_pid;
+
+// 目标位置（角度）
+float target_angle = 90.0f; // 90度位置
+
+int main(void) {
+    // 硬件初始化
+    HAL_Init();
+    SystemClock_Config();
+    MX_I2C1_Init(); // AS5600使用的I2C
+    MX_TIM1_Init(); // PWM定时器初始化
+    Motor_Init();   // 电机初始化
+    
+    // PID初始化 - 参数需要根据你的系统调整
+    PID_Init(&position_pid, 
+             2.0f,   // Kp
+             0.05f,  // Ki
+             0.1f,   // Kd
+             0.01f,  // Ts = 10ms
+             -1000,  // 最小输出
+             1000);  // 最大输出
+    
+    // 主循环
+    while (1) {
+        // 获取当前角度
+        float current_angle = AS5600_GetAngleDeg();
+        
+        // 计算角度差（处理360°边界）
+        float angle_diff = AS5600_GetAngleDifference(target_angle, current_angle);
+        
+        // 计算PID增量
+        float delta_output = PID_Incremental(&position_pid, current_angle, target_angle);
+        
+        // 应用输出到电机（这里假设你的电机驱动需要绝对位置）
+        // 注意：增量式PID输出的是变化量，需要外部累加
+        static float total_output = 0;
+        total_output += delta_output;
+        
+        // 输出限幅
+        if (total_output > position_pid.output_max) {
+            total_output = position_pid.output_max;
+        } else if (total_output < position_pid.output_min) {
+            total_output = position_pid.output_min;
+        }
+        
+        // 设置电机位置
+        Set_Motor_Position(total_output);
+        
+        // 等待下一个控制周期（10ms）
+        HAL_Delay(position_pid.Ts * 1000);
+    }
+}
+```
+
+##### 位置环控制特点与调参建议
+
+**增量式PID在位置控制中的优势：**
+1. 无积分饱和问题
+2. 输出变化平滑
+3. 易于实现手动/自动切换
+4. 对执行器冲击小
+
+**参数整定建议：**
+
+1. **初始参数设置**（需要根据你的系统调整）：
+   ```c
+   Kp = 1.0-5.0    // 决定响应速度
+   Ki = 0.01-0.1   // 消除稳态误差
+   Kd = 0.05-0.5   // 抑制超调和振荡
+   Ts = 0.01       // 10ms采样时间
+   ```
+
+2. **调参步骤**：
+   - 先将Ki和Kd设为0，调整Kp直到系统开始振荡
+   - 将Kp设为振荡值的50%
+   - 缓慢增加Ki直到稳态误差消除
+   - 增加Kd来抑制超调和振荡
+
+3. **AS5600特定优化**：
+   - 使用角度差函数处理360°边界
+   - 添加软件滤波减少磁编码器噪声影响
+   - 考虑机械回差补偿
+
+##### 高级优化技巧
+
+1. **速度前馈**：
+   
+   ```c
+   // 在PID计算后添加速度前馈
+   float velocity_feedforward = target_velocity * FF_gain;
+   total_output += velocity_feedforward;
+   ```
+   
+2. **抗饱和改进**：
+   
+   ```c
+   // 在PID计算函数中添加
+   if ((delta_output > 0 && total_output >= position_pid.output_max) ||
+       (delta_output < 0 && total_output <= position_pid.output_min)) {
+       // 禁止积分项累积
+       pid->integral = pid->integral; // 保持原值
+   }
+   ```
+   
+3. **死区补偿**：
+   ```c
+   // 在误差计算后添加
+   if (fabs(err) < DEADZONE_THRESHOLD) {
+       err = 0;
+   }
+   ```
+
+4. **自适应控制**：
+   ```c
+   // 根据误差大小动态调整参数
+   if (fabs(err) > 30.0f) { // 大误差区域
+       pid->Kp = 5.0f;
+       pid->Ki = 0.0f; // 关闭积分
+   } else { // 小误差区域
+       pid->Kp = 2.0f;
+       pid->Ki = 0.05f;
+   }
+   ```
+
+##### 调试建议
+
+1. **数据记录**：
+   ```c
+   // 在控制循环中添加调试输出
+   printf("Target: %.2f, Current: %.2f, Output: %.2f\n", 
+          target_angle, current_angle, total_output);
+   ```
+
+2. **阶跃响应测试**：
+   - 设置不同的目标位置（如0°→90°→180°→0°）
+   - 观察响应时间、超调量和稳态误差
+
+3. **抗干扰测试**：
+   - 在系统稳定时施加外部扰动
+   - 观察恢复时间和超调
+
+4. **长时间运行测试**：
+   - 检查温升和稳定性
+   - 验证360°边界处理是否正确
+
+##### 总结
+
+通过AS5600磁性编码器和增量式PID实现的闭环位置控制系统具有精度高、响应快、稳定性好的特点。关键点包括：
+
+1. 正确处理AS5600的360°边界
+2. 增量式PID的参数整定
+3. 积分抗饱和和输出限幅
+4. 适当的采样时间选择（建议10-20ms）
+
+实际应用中，你可能需要根据具体机械系统的特性（如摩擦、惯性）进一步优化PID参数和添加高级控制策略。
+
 
 
 ## **开环控制 - 滑膜控制**
@@ -740,6 +1017,20 @@ void Optimized_SPWM(float Ua, float Ub, float Uc, MotorState *motor)
 ![image-20250619230900901](./FOC%E7%94%B5%E6%8E%A7.assets/image-20250619230900901.png)
 
 ![image-20250619230953271](./FOC%E7%94%B5%E6%8E%A7.assets/image-20250619230953271-1750773500682-10.png)
+
+##### PWM更新中断触发DMA时间
+
+![image-20250628094903265](./FOC%E7%94%B5%E6%8E%A7.assets/image-20250628094903265.png)
+
+###### 浮点数FOC耗时
+
+![image-20250628095405923](./FOC%E7%94%B5%E6%8E%A7.assets/image-20250628095405923.png)
+
+![image-20250628095601622](./FOC%E7%94%B5%E6%8E%A7.assets/image-20250628095601622.png)虽然看起来时间大致没有变换 但是感觉并不能推导出 foc能否在50us内运算完毕 毕竟相差几个ms看起来也不明显 需要进一步验证
+
+![image-20250628095934114](./FOC%E7%94%B5%E6%8E%A7.assets/image-20250628095934114.png)
+
+浮点foc运算时间只有6us 显然50us足够了
 
 #### 电流采样
 

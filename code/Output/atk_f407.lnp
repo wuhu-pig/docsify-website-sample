@@ -4,7 +4,6 @@
 "..\..\output\delay.o"
 "..\..\output\sys.o"
 "..\..\output\usart.o"
-"..\..\output\as5600.o"
 "..\..\output\atim.o"
 "..\..\output\gtim.o"
 "..\..\output\adc.o"
@@ -12,6 +11,7 @@
 "..\..\output\spi.o"
 "..\..\output\i2c.o"
 "..\..\output\foc.o"
+"..\..\output\pid.o"
 "..\..\output\lcd_drive.o"
 --strict --scatter "..\..\Output\atk_f407.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols

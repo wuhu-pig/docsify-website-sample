@@ -4,6 +4,7 @@
 
 Motor_t my_motor;
 Motor_State  motor_state;
+uint8_t MotorRotateValue;
 void foc_init(void)
 {
 	//参数初始化

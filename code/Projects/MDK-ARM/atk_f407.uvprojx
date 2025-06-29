@@ -419,11 +419,6 @@
               <FilePath>..\..\Drivers\SYSTEM\usart\usart.c</FilePath>
             </File>
             <File>
-              <FileName>as5600.c</FileName>
-              <FileType>1</FileType>
-              <FilePath>..\..\Drivers\SYSTEM\AS5600\as5600.c</FilePath>
-            </File>
-            <File>
               <FileName>atim.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Drivers\SYSTEM\TIMER\atim.c</FilePath>
@@ -462,6 +457,11 @@
               <FileName>foc.c</FileName>
               <FileType>1</FileType>
               <FilePath>..\..\Drivers\SYSTEM\motor\foc.c</FilePath>
+            </File>
+            <File>
+              <FileName>pid.c</FileName>
+              <FileType>1</FileType>
+              <FilePath>..\..\Drivers\SYSTEM\motor\pid.c</FilePath>
             </File>
           </Files>
         </Group>

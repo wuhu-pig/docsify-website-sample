@@ -12,13 +12,12 @@
 ..\..\output\main.o: D:\1.sofeware\keil5\ARM\ARMCC\Bin\..\include\stdio.h
 ..\..\output\main.o: ..\..\Drivers\SYSTEM\delay\delay.h
 ..\..\output\main.o: ..\..\Drivers\SYSTEM\led\led.h
-..\..\output\main.o: ..\..\Drivers\SYSTEM\as5600\as5600.h
 ..\..\output\main.o: ..\..\Drivers\SYSTEM\timer\atim.h
 ..\..\output\main.o: ..\..\Drivers\SYSTEM\timer\gtim.h
 ..\..\output\main.o: ..\..\Drivers\SYSTEM\adc\adc.h
 ..\..\output\main.o: D:\1.sofeware\keil5\ARM\ARMCC\Bin\..\include\math.h
-..\..\output\main.o: ..\..\Drivers\SYSTEM\motor\motor.h
-..\..\output\main.o: ..\..\Drivers\SYSTEM\motor\status.h
 ..\..\output\main.o: ..\..\Drivers\SYSTEM\i2c\i2c.h
 ..\..\output\main.o: ..\..\Drivers\SYSTEM\spi\spi.h
 ..\..\output\main.o: ..\..\Drivers\SYSTEM\motor\foc.h
+..\..\output\main.o: ..\..\Drivers\SYSTEM\motor\pid.h
+..\..\output\main.o: D:\1.sofeware\keil5\ARM\ARMCC\Bin\..\include\string.h

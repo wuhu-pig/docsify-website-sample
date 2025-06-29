@@ -165,19 +165,16 @@ void DMA2_Stream0_IRQHandler(void)
     if(DMA2->LISR & DMA_LISR_TCIF0)
     {
         DMA2->LIFCR |= DMA_LIFCR_CTCIF0;  // 清除中断标志
-
         // 处理ADC结果
-        LED0_TOGGLE();
+//        LED0_TOGGLE();
       if(MOTOR_CLOSED_LOOP==motor_state)
 			{
+//				LED0_TOGGLE();
 				// 获取三相电流
 				get_three_phase_currents((float *)&my_motor.phasecurrent.ia,(float *)&my_motor.phasecurrent.ib,(float *)&my_motor.phasecurrent.ic);
 				foc_main_spwm();
+				
 			}
-        // 获取三相电流值并执行电流环控制
-       // foc_current_control_example((float *)&my_motor.phasecurrent.ia,(float *)&my_motor.phasecurrent.ib,(float *)&my_motor.phasecurrent.ic);
-        
-        // 用户处理逻辑...
     }
 }
 

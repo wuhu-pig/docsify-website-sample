@@ -149,7 +149,7 @@ void TIM8_UP_TIM13_IRQHandler(void)
     if (ATIM_TIMX_CPLM->SR & TIM_SR_UIF) {
         // 清除中断标志
         ATIM_TIMX_CPLM->SR &= ~TIM_SR_UIF;
-				LED0_TOGGLE();
+//				LED0_TOGGLE();
 			if(MOTOR_OPEN_LOOP==motor_state)
 			{
 				foc_main_spwm();
