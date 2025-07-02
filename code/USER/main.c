@@ -31,10 +31,10 @@ int main(void)
 		init_moving_means();
 		adc_init();
     dma_init();
-    atim_timx_cplm_pwm_init(50 - 1, 168 - 1); /* 168/4=42Mhz的计数频率 1Khz的周期. */  //1000对应1ms 50对应50us
+    atim_timx_cplm_pwm_init(PWM_PERIOD - 1, 168 - 1); /* 168/4=42Mhz的计数频率 1Khz的周期. */  //1000对应1ms 50对应50us
 		foc_init();
 		motor_state=MOTOR_PAREE;
-		gtim_timx_int_init(100-1, 84 - 1); /* 84 000 000 / 84 00 = 10 000 10Khz的计数频率，计数5K次为500ms */	//100对应100us
+		gtim_timx_int_init(PWM_PERIOD-1, 84 - 1); /* 84 000 000 / 84 00 = 10 000 10Khz的计数频率，计数5K次为500ms */	//100对应100us
 		/**************/
 		while (1)
     {

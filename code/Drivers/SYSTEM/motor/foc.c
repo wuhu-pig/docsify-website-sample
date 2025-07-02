@@ -116,9 +116,9 @@ float _normalizeAngle(float angle)
 
 void phasesetpwm(float *a, float *b, float *c,uint16_t *ccra,uint16_t *ccrb,uint16_t *ccrc)
 {
-	*ccra=_constrain(*a*1000/Vref, 0, 1000 );
-	*ccrb=_constrain(*b*1000/Vref, 0, 1000 );
-	*ccrc=_constrain(*c*1000/Vref, 0, 1000 );
+	*ccra=_constrain(*a*PWM_PERIOD/Vref, 0, PWM_PERIOD );
+	*ccrb=_constrain(*b*PWM_PERIOD/Vref, 0, PWM_PERIOD );
+	*ccrc=_constrain(*c*PWM_PERIOD/Vref, 0, PWM_PERIOD );
 	atim_timx_cplm_pwm_set(*ccra,1);
 	atim_timx_cplm_pwm_set(*ccrb,2);
 	atim_timx_cplm_pwm_set(*ccrc,3);

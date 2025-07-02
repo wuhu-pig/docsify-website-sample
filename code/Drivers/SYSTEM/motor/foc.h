@@ -9,12 +9,12 @@
 #define ONE_BY_SQRT3 	0.57735026919f
 #define SQRT3_BY_2  	0.86602540378f
 
-#define RAMPSTEP 			0.01f
+#define RAMPSTEP 			0.0001f
 #define MAXSPEED 			200					//单位 rad/s  2*2pi/60=2*2*180/60=12度/s
 #define Ts 						0.001f			//1ms
 #define Vref 					12				//电源电压12v
 #define Vrefby2 			6					//电源电压12v
-#define PWM_PERIOD 		1000 			// PWM定时器周期值
+#define PWM_PERIOD 		100 			// PWM定时器周期值
 #define _constrain(amt,low,high) ((amt)<(low)?(low):((amt)>(high)?(high):(amt)))
 
 // 电流采样结构体
